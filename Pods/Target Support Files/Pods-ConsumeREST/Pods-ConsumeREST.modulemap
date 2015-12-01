@@ -1,0 +1,6 @@
+framework module Pods_ConsumeREST {
+  umbrella header "Pods-ConsumeREST-umbrella.h"
+
+  export *
+  module * { export * }
+}
