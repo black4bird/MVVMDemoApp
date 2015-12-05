@@ -11,17 +11,23 @@ import UIKit
 
 class RootViewController: UITabBarController{
     
-    let mainVc1 = MainViewController()
+    let mainVc1 = HomeViewController(style: .Grouped)
     let mainVc2 = CameraViewController()
     
     override func viewDidLoad() {
-        let controllers = [mainVc1, mainVc2]
+        let navVc1 = UINavigationController(rootViewController: mainVc1)
+        let navVc2 = UINavigationController(rootViewController: mainVc2)
+        let controllers = [navVc1,navVc2]
         let firstImg = UIImage(named: "home-icon")
         let secondImg = UIImage(named: "plus-icon")
-        mainVc1.tabBarItem = UITabBarItem(title: "HOME", image: firstImg, tag: 1)
-        mainVc2.tabBarItem = UITabBarItem(title: "CAMERA", image: secondImg, tag: 2)
+        navVc1.tabBarItem = UITabBarItem(title: "HOME", image: firstImg, tag: 1)
+        navVc2.tabBarItem = UITabBarItem(title: "CAMERA", image: secondImg, tag: 2)
         self.viewControllers = controllers
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = true
+    }
     
 }

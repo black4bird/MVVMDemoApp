@@ -13,8 +13,10 @@ import PromiseKit
 import Bond
 import ObjectMapper
 import SwiftyJSON
+import CryptoSwift
+
 class WebService:NSObject, CLUploaderDelegate{
-    let kBaseUrl = "http://localhost:3000/api/v1"
+    let kBaseUrl = "http://192.168.70.137:3000/api/v1"
     //Cloudinary constant 
     let kCloudName = "ddakp60er"
     let kApiKey = "287623843915194"
@@ -22,18 +24,8 @@ class WebService:NSObject, CLUploaderDelegate{
     
     static let sharedInstance = WebService()
     private override init(){}
-    
-    func queryForTable() -> Promise<ObservableArray<ImageObject>>{
-        return Promise {
-            fulfill, reject in
-            Alamofire.request(.GET, kBaseUrl).responseJSON{
-                response in
-                
-            }
-        }
-    
-    }
-    
+
+        //MARK:Query for images
     func loadHome() -> Promise<[ImageObject]>{
         return Promise {
             fulfill, reject in
@@ -41,8 +33,10 @@ class WebService:NSObject, CLUploaderDelegate{
             Alamofire.request(.GET, url).responseJSON{
                 response in
                 if (response.result.error == nil){
-                    let feeds = Mapper<ImageObject>().mapArray(response.result.value as! [AnyObject])
-                    fulfill(feeds!)
+
+                    if let feeds = Mapper<ImageObject>().mapArray(response.result.value as! [AnyObject]){
+                        fulfill(feeds)
+                    }
                 }
                 else{
                     reject(response.result.error!)
@@ -51,12 +45,28 @@ class WebService:NSObject, CLUploaderDelegate{
         }
     }
     
+    func queryForCreateImage(imageUrl: String, timestamp: String){
+        let url = kBaseUrl + "/image"
+        Alamofire.request(.POST, url, parameters: ["url" : imageUrl,
+            "userid" : AppData.sharedInstance.getUserId(),
+            "timestamp" : timestamp,
+            "lat": AppData.sharedInstance.getUserLat(),
+            "lon": AppData.sharedInstance.getUserLon(),
+            "city": AppData.sharedInstance.getUserCity()]
+        )
+    }
+    
+    //MARK: Query for users
     func queryForUserExist(username: String, password: String, completionHandler:(success: Bool)->Void){
         let url = kBaseUrl + "/user/find"
-        Alamofire.request(.POST, url, parameters:["username": username,"password": password],encoding: .JSON).responseJSON { (response) -> Void in
+        Alamofire.request(.POST, url, parameters:["username": username,"password": password.sha1()],encoding: .JSON).responseJSON { (response) -> Void in
             if (response.result.error == nil){
                 let json = JSON(response.result.value!)
                 let status = json[0]["exists"].boolValue
+                if (status){
+                    self.queryForUser(username, pass: password)
+
+                }
                 completionHandler(success: status)
             }
             else{
@@ -65,14 +75,61 @@ class WebService:NSObject, CLUploaderDelegate{
         }
     }
     
-    func queryForCreateData(entity: ImageObject){
-        let url = kBaseUrl + "/image"
-        Alamofire.request(.POST, url, parameters: ["url" : entity.getUrl(),
-            "timestamp" : entity.getTimeStamp(),
-            "width" : entity.getWidth(),
-            "height" : entity.getHeight()])
+    func queryForUser(username: String, pass: String) -> Promise<UserObject>{
+        return Promise{
+            fulfill, reject in
+            let url = kBaseUrl + "/login"
+            Alamofire.request(.POST, url, parameters:["username": username,"password": pass.sha1()],encoding: .JSON).responseJSON{
+                response in
+                if (response.result.error == nil){
+                   if let user = Mapper<UserObject>().mapArray(response.result.value as! [AnyObject])
+                   {
+    
+                        AppData.sharedInstance.setUserId(user[0].getId())
+                        print(user[0].getId())
+                        fulfill(user[0])
+                    }
+                    
+                }
+                else{
+
+                    reject(response.result.error!)
+                }
+
+            }
+        }
     }
     
+ 
+    
+    
+    //MARK: Query for tag
+    func queryForAllTag()->Promise<[TagObject]>{
+        return Promise{
+            fulfill, reject in
+            let url = kBaseUrl + "/tag"
+            Alamofire.request(.GET, url).responseJSON{
+                response in
+                if (response.result.error == nil){
+                    
+                    if let tags = Mapper<TagObject>().mapArray(response.result.value as! [AnyObject]){
+                        fulfill(tags)
+                    }
+                }
+                else{
+                    reject(response.result.error!)
+                }
+            }
+        }
+    }
+
+    
+    func queryForImageTag(){
+    
+    }
+    
+    
+    //MARK: Upload image
     func uploadImage(image: UIImage){
         let imageData = UIImagePNGRepresentation(image)
         let request = NSMutableURLRequest(URL: NSURL(string: kCloudName)!)
@@ -108,7 +165,7 @@ class WebService:NSObject, CLUploaderDelegate{
     }
     
     func cloudinaryUploadImage(image: UIImage){
-        let publicId = Utility.sharedInstance.uniqueId()
+        let publicId = Utility.sharedInstance.uniqueId().sha1()
         let cloudinary_url = "cloudinary://\(kApiKey):\(kSecret)@\(kCloudName)"
         let cloudinary = CLCloudinary(url: cloudinary_url)
         let imageData = UIImagePNGRepresentation(image)! as NSData
@@ -116,21 +173,17 @@ class WebService:NSObject, CLUploaderDelegate{
         uploader.upload(imageData, options: ["public_id" : publicId, "sync": false])
     }
     
-    //Cloudinary Delegate 
+    //MARK: Cloudinary Delegate 
     @objc func uploaderProgress(bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int, context: AnyObject!) {
        // print("On going")
     }
     
     @objc func uploaderSuccess(result: [NSObject : AnyObject]!, context: AnyObject!) {
 
-//        let entity = ImageObject()
-//        entity.url = result["url"] as! String? ?? ""
-//        entity.timestamp = result["created_at"] as! String? ?? ""
-//        entity.width = (result["width"] as! Double?)!
-//        entity.height = (result["height"] as! Double?)!
-//        
-//        queryForCreateData(entity)
-//        queryForTable()
+       let url = result["url"] as! String
+        let timestamp = result["created_at"] as! String
+        queryForCreateImage(url, timestamp: timestamp)
+        
     }
     
     

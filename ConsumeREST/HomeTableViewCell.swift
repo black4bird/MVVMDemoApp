@@ -20,7 +20,7 @@ class HomeTableViewCell : UITableViewCell {
         imgView.contentMode = .ScaleAspectFill
         imgView.backgroundColor = UIColor.redColor()
         imgView.clipsToBounds = true
-        print(imageView!.frame)
+        self.selectionStyle = .None
         //imgView.image = UIImage(named: "image-sample2")
         
     }

@@ -12,13 +12,17 @@ protocol ImageProtocol{
     func getId() -> String
     func getUrl() -> String
     func getTimeStamp() -> String
-    func getWidth() -> Double
-    func getHeight() -> Double
+//    func getWidth() -> Double
+//    func getHeight() -> Double
 }
 
 protocol UserProtocol{
-    func getId() -> String
+    func getId() -> Int
     func getUsername() -> String
     func getEmail() -> String
 
+}
+
+protocol TagProtocol{
+    func getName() -> String
 }

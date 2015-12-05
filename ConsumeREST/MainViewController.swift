@@ -67,9 +67,6 @@ class MainViewController: UIViewController {
             //WebService.sharedInstance.queryForTable()
             let chosenImage = UIImage(named: "image-sample")
             WebService.sharedInstance.cloudinaryUploadImage(chosenImage!)
-            
-
-          // WebService.sharedInstance.queryForCreateData(entity)
         }
         
         

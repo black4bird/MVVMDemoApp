@@ -11,6 +11,8 @@ import UIKit
 import Cartography
 import Bond
 import CoreMotion
+import SDWebImage
+
 class AcceleratorViewController : UIViewController {
     let xLabel = UILabel()
     let yLabel = UILabel()
@@ -18,6 +20,19 @@ class AcceleratorViewController : UIViewController {
     let manager = CMMotionManager()
     let queue = NSOperationQueue.mainQueue()
     let imageView = UIImageView(frame: UIScreen.mainScreen().bounds)
+    var imgUrl = String()
+    
+    init(entity: ImageObject){
+        
+        self.imgUrl = entity.getUrl()
+//        print("lon:\(entity.getUserId())")
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(xLabel)
@@ -26,7 +41,7 @@ class AcceleratorViewController : UIViewController {
         view.addSubview(imageView)
         imageView.contentMode = .ScaleAspectFill
         imageView.clipsToBounds = true
-        imageView.image = UIImage(named: "image-sample")
+        imageView.sd_setImageWithURL(NSURL(string: imgUrl), placeholderImage: UIImage(named: "placeholder-image"))
         setupAccelerometer()
         //constraintForSubviews()
         //configureSubviews()

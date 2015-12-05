@@ -26,6 +26,8 @@
 		04C3AB9D1C0CE58400D6F2D3 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB9C1C0CE58400D6F2D3 /* Protocol.swift */; };
 		04C3AB9F1C0CFFB100D6F2D3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB9E1C0CFFB100D6F2D3 /* Extension.swift */; };
 		04C3ABA11C0E21F200D6F2D3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3ABA01C0E21F200D6F2D3 /* LoginViewController.swift */; };
+		04C3ABA31C0F3C5B00D6F2D3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3ABA21C0F3C5B00D6F2D3 /* Router.swift */; };
+		04C4BE981C104177006E5464 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4BE971C104177006E5464 /* AppData.swift */; };
 		5EC80C9E7740B30EC9CBC497 /* Pods_ConsumeREST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA4718DF3905052BECD9FE2 /* Pods_ConsumeREST.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,8 @@
 		04C3AB9C1C0CE58400D6F2D3 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		04C3AB9E1C0CFFB100D6F2D3 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		04C3ABA01C0E21F200D6F2D3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		04C3ABA21C0F3C5B00D6F2D3 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		04C4BE971C104177006E5464 /* AppData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
 		AF843C28840EE4A3FBB9713B /* Pods-ConsumeREST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsumeREST.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsumeREST/Pods-ConsumeREST.release.xcconfig"; sourceTree = "<group>"; };
 		C4F9001A2C703883B69031FA /* Pods-ConsumeREST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsumeREST.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConsumeREST/Pods-ConsumeREST.debug.xcconfig"; sourceTree = "<group>"; };
 		FAA4718DF3905052BECD9FE2 /* Pods_ConsumeREST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsumeREST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +108,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04B70A881C1342C9006D08AA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				04C3AB8F1C08BEB100D6F2D3 /* HomeViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
 		04C3AB3A1C0496F600D6F2D3 = {
 			isa = PBXGroup;
 			children = (
@@ -129,13 +141,14 @@
 		04C3AB451C0496F700D6F2D3 /* ConsumeREST */ = {
 			isa = PBXGroup;
 			children = (
+				04C3ABA41C0F490400D6F2D3 /* Wireframe */,
 				04C3AB9B1C0CE56800D6F2D3 /* Protocol */,
 				04C3AB981C0A3B6B00D6F2D3 /* Cell */,
 				04C3AB971C0A374600D6F2D3 /* Core */,
 				04C3AB961C0A372900D6F2D3 /* Helper */,
 				04C3AB931C08BEF800D6F2D3 /* Model */,
 				04C3AB921C08BEE700D6F2D3 /* Service */,
-				04C3AB911C08BEB600D6F2D3 /* Controller */,
+				04C3AB911C08BEB600D6F2D3 /* Scene */,
 				04C3AB4D1C0496F700D6F2D3 /* Assets.xcassets */,
 				04C3AB521C0496F700D6F2D3 /* Info.plist */,
 				04C3AB871C08A66700D6F2D3 /* App-Bridging-Header.m */,
@@ -162,17 +175,17 @@
 			path = ConsumeRESTUITests;
 			sourceTree = "<group>";
 		};
-		04C3AB911C08BEB600D6F2D3 /* Controller */ = {
+		04C3AB911C08BEB600D6F2D3 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				04B70A881C1342C9006D08AA /* Home */,
 				04C3AB741C0498FE00D6F2D3 /* MainViewController.swift */,
 				04C3AB781C08520500D6F2D3 /* AcceleratorViewController.swift */,
 				04C3AB7A1C085FE300D6F2D3 /* RootViewController.swift */,
 				04C3AB7C1C086DA600D6F2D3 /* CameraViewController.swift */,
-				04C3AB8F1C08BEB100D6F2D3 /* HomeViewController.swift */,
 				04C3ABA01C0E21F200D6F2D3 /* LoginViewController.swift */,
 			);
-			name = Controller;
+			name = Scene;
 			sourceTree = "<group>";
 		};
 		04C3AB921C08BEE700D6F2D3 /* Service */ = {
@@ -206,6 +219,8 @@
 			isa = PBXGroup;
 			children = (
 				04C3AB461C0496F700D6F2D3 /* AppDelegate.swift */,
+				04C3ABA21C0F3C5B00D6F2D3 /* Router.swift */,
+				04C4BE971C104177006E5464 /* AppData.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -224,6 +239,13 @@
 				04C3AB9C1C0CE58400D6F2D3 /* Protocol.swift */,
 			);
 			name = Protocol;
+			sourceTree = "<group>";
+		};
+		04C3ABA41C0F490400D6F2D3 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Wireframe;
 			sourceTree = "<group>";
 		};
 		8483B776662E40691EE14611 /* Frameworks */ = {
@@ -423,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C3ABA31C0F3C5B00D6F2D3 /* Router.swift in Sources */,
 				04C3AB9F1C0CFFB100D6F2D3 /* Extension.swift in Sources */,
 				04C3AB8E1C08B08600D6F2D3 /* Utility.swift in Sources */,
 				04C3AB8C1C08A6D800D6F2D3 /* AppEntity.swift in Sources */,
@@ -439,6 +462,7 @@
 				04C3AB471C0496F700D6F2D3 /* AppDelegate.swift in Sources */,
 				04C3AB751C0498FE00D6F2D3 /* MainViewController.swift in Sources */,
 				04C3AB7D1C086DA600D6F2D3 /* CameraViewController.swift in Sources */,
+				04C4BE981C104177006E5464 /* AppData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

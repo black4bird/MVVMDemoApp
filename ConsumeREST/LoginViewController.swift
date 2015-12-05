@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Cartography
 import Bond
+import CoreLocation
 
 class LoginViewController: UIViewController {
     let loginButton = UIButton()
@@ -53,6 +54,7 @@ class LoginViewController: UIViewController {
         loginButton.bnd_tap.observe{
             WebService.sharedInstance.queryForUserExist(self.usernameTextField.text!, password: self.passwordTextField.text!, completionHandler: { (success) -> Void in
                 if(success){
+                    
                     let rootViewVc = RootViewController()
                     self.navigationController!.pushViewController(rootViewVc, animated: true)
                 }
@@ -72,6 +74,7 @@ class LoginViewController: UIViewController {
                         completion: nil)
                 }
             })
+
         }
         usernameTextField.backgroundColor = UIColor.grayColor()
         
