@@ -10,13 +10,16 @@
 		04B70A8C1C137BAD006D08AA /* CreatePostInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70A8B1C137BAD006D08AA /* CreatePostInfoViewController.swift */; };
 		04B70A8E1C138017006D08AA /* CreatePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70A8D1C138017006D08AA /* CreatePostModel.swift */; };
 		04B70A901C13812B006D08AA /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70A8F1C13812B006D08AA /* TagCell.swift */; };
-		04B70A961C15C15E006D08AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B70A951C15C15E006D08AA /* Images.xcassets */; };
 		04B70A9A1C15D339006D08AA /* century-gothic-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04B70A981C15D1DA006D08AA /* century-gothic-bold.ttf */; };
 		04B70A9B1C15D339006D08AA /* century-gothic-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04B70A991C15D1DA006D08AA /* century-gothic-italic.ttf */; };
 		04B70A9D1C15D818006D08AA /* century-gothic-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04B70A9C1C15D7FE006D08AA /* century-gothic-regular.ttf */; };
 		04B70A9F1C15DADE006D08AA /* HomeCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70A9E1C15DADE006D08AA /* HomeCellView.swift */; };
 		04B70AA21C1617BD006D08AA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70AA11C1617BD006D08AA /* SearchViewController.swift */; };
 		04B70AA41C16DEA0006D08AA /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70AA31C16DEA0006D08AA /* SearchModel.swift */; };
+		04B70AA71C170E85006D08AA /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70AA61C170E85006D08AA /* GalleryViewController.swift */; };
+		04B70AA91C1712F9006D08AA /* GalleryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70AA81C1712F9006D08AA /* GalleryModel.swift */; };
+		04B70AAB1C172ACD006D08AA /* GalleryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70AAA1C172ACD006D08AA /* GalleryProtocol.swift */; };
+		04B70AAD1C1740B2006D08AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B70AAC1C1740B2006D08AA /* Images.xcassets */; };
 		04C3AB471C0496F700D6F2D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB461C0496F700D6F2D3 /* AppDelegate.swift */; };
 		04C3AB5C1C0496F700D6F2D3 /* ConsumeRESTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB5B1C0496F700D6F2D3 /* ConsumeRESTTests.swift */; };
 		04C3AB671C0496F700D6F2D3 /* ConsumeRESTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB661C0496F700D6F2D3 /* ConsumeRESTUITests.swift */; };
@@ -32,7 +35,7 @@
 		04C3AB901C08BEB100D6F2D3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB8F1C08BEB100D6F2D3 /* HomeViewController.swift */; };
 		04C3AB951C0A372300D6F2D3 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB941C0A372300D6F2D3 /* AppConstant.swift */; };
 		04C3AB9A1C0A3B8000D6F2D3 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB991C0A3B8000D6F2D3 /* HomeTableViewCell.swift */; };
-		04C3AB9D1C0CE58400D6F2D3 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB9C1C0CE58400D6F2D3 /* Protocol.swift */; };
+		04C3AB9D1C0CE58400D6F2D3 /* ObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB9C1C0CE58400D6F2D3 /* ObjectProtocol.swift */; };
 		04C3AB9F1C0CFFB100D6F2D3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB9E1C0CFFB100D6F2D3 /* Extension.swift */; };
 		04C3ABA11C0E21F200D6F2D3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3ABA01C0E21F200D6F2D3 /* LoginViewController.swift */; };
 		04C3ABA31C0F3C5B00D6F2D3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3ABA21C0F3C5B00D6F2D3 /* Router.swift */; };
@@ -61,13 +64,16 @@
 		04B70A8B1C137BAD006D08AA /* CreatePostInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostInfoViewController.swift; sourceTree = "<group>"; };
 		04B70A8D1C138017006D08AA /* CreatePostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostModel.swift; sourceTree = "<group>"; };
 		04B70A8F1C13812B006D08AA /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
-		04B70A951C15C15E006D08AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		04B70A981C15D1DA006D08AA /* century-gothic-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "century-gothic-bold.ttf"; sourceTree = "<group>"; };
 		04B70A991C15D1DA006D08AA /* century-gothic-italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "century-gothic-italic.ttf"; sourceTree = "<group>"; };
 		04B70A9C1C15D7FE006D08AA /* century-gothic-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "century-gothic-regular.ttf"; sourceTree = "<group>"; };
 		04B70A9E1C15DADE006D08AA /* HomeCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeCellView.swift; path = ../HomeCellView.swift; sourceTree = "<group>"; };
 		04B70AA11C1617BD006D08AA /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		04B70AA31C16DEA0006D08AA /* SearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		04B70AA61C170E85006D08AA /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		04B70AA81C1712F9006D08AA /* GalleryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryModel.swift; sourceTree = "<group>"; };
+		04B70AAA1C172ACD006D08AA /* GalleryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryProtocol.swift; sourceTree = "<group>"; };
+		04B70AAC1C1740B2006D08AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		04C3AB431C0496F600D6F2D3 /* ConsumeREST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConsumeREST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C3AB461C0496F700D6F2D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04C3AB521C0496F700D6F2D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,7 +96,7 @@
 		04C3AB8F1C08BEB100D6F2D3 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		04C3AB941C0A372300D6F2D3 /* AppConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
 		04C3AB991C0A3B8000D6F2D3 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		04C3AB9C1C0CE58400D6F2D3 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		04C3AB9C1C0CE58400D6F2D3 /* ObjectProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectProtocol.swift; sourceTree = "<group>"; };
 		04C3AB9E1C0CFFB100D6F2D3 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		04C3ABA01C0E21F200D6F2D3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		04C3ABA21C0F3C5B00D6F2D3 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -156,6 +162,7 @@
 		04B70A971C15D1CC006D08AA /* font */ = {
 			isa = PBXGroup;
 			children = (
+				04B70AAC1C1740B2006D08AA /* Images.xcassets */,
 				04B70A9C1C15D7FE006D08AA /* century-gothic-regular.ttf */,
 				04B70A981C15D1DA006D08AA /* century-gothic-bold.ttf */,
 				04B70A991C15D1DA006D08AA /* century-gothic-italic.ttf */,
@@ -172,11 +179,20 @@
 			name = Search;
 			sourceTree = "<group>";
 		};
+		04B70AA51C170E6A006D08AA /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				04B70AA61C170E85006D08AA /* GalleryViewController.swift */,
+				04B70AA81C1712F9006D08AA /* GalleryModel.swift */,
+				04B70AAA1C172ACD006D08AA /* GalleryProtocol.swift */,
+			);
+			name = Gallery;
+			sourceTree = "<group>";
+		};
 		04C3AB3A1C0496F600D6F2D3 = {
 			isa = PBXGroup;
 			children = (
 				04B70A971C15D1CC006D08AA /* font */,
-				04B70A951C15C15E006D08AA /* Images.xcassets */,
 				04C3AB451C0496F700D6F2D3 /* ConsumeREST */,
 				04C3AB5A1C0496F700D6F2D3 /* ConsumeRESTTests */,
 				04C3AB651C0496F700D6F2D3 /* ConsumeRESTUITests */,
@@ -235,6 +251,7 @@
 		04C3AB911C08BEB600D6F2D3 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				04B70AA51C170E6A006D08AA /* Gallery */,
 				04B70AA01C161788006D08AA /* Search */,
 				04B70A8A1C1343E7006D08AA /* Login */,
 				04B70A891C1343CB006D08AA /* CreatePost */,
@@ -295,7 +312,7 @@
 		04C3AB9B1C0CE56800D6F2D3 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				04C3AB9C1C0CE58400D6F2D3 /* Protocol.swift */,
+				04C3AB9C1C0CE58400D6F2D3 /* ObjectProtocol.swift */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -432,9 +449,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				04B70A9D1C15D818006D08AA /* century-gothic-regular.ttf in Resources */,
+				04B70AAD1C1740B2006D08AA /* Images.xcassets in Resources */,
 				04B70A9A1C15D339006D08AA /* century-gothic-bold.ttf in Resources */,
 				04B70A9B1C15D339006D08AA /* century-gothic-italic.ttf in Resources */,
-				04B70A961C15C15E006D08AA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,7 +531,10 @@
 				04C3AB8E1C08B08600D6F2D3 /* Utility.swift in Sources */,
 				04C3AB8C1C08A6D800D6F2D3 /* AppEntity.swift in Sources */,
 				04C3AB9A1C0A3B8000D6F2D3 /* HomeTableViewCell.swift in Sources */,
-				04C3AB9D1C0CE58400D6F2D3 /* Protocol.swift in Sources */,
+				04B70AAB1C172ACD006D08AA /* GalleryProtocol.swift in Sources */,
+				04B70AA91C1712F9006D08AA /* GalleryModel.swift in Sources */,
+				04C3AB9D1C0CE58400D6F2D3 /* ObjectProtocol.swift in Sources */,
+				04B70AA71C170E85006D08AA /* GalleryViewController.swift in Sources */,
 				04C3AB7B1C085FE300D6F2D3 /* RootViewController.swift in Sources */,
 				04C3AB951C0A372300D6F2D3 /* AppConstant.swift in Sources */,
 				04C3AB881C08A66700D6F2D3 /* App-Bridging-Header.m in Sources */,

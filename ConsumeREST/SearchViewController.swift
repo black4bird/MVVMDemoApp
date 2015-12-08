@@ -10,15 +10,16 @@ import Foundation
 import UIKit
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate{
+    enum state {case USER, TAG, CITY}
+    
     let model = SearchModel()
-    let sampleArray1 = ["lala","lili","lolo"]
-    let sampleArray2 = ["haha","hihi","hoho"]
     var currentArray :[String] = []
     var filterArray:[String] = []
     let searchBar = UISearchBar(frame: CGRectMake(0,0,AppConstant.appWidth,100))
-    let tableView = UITableView(frame: CGRectMake(0, 100, AppConstant.appWidth, AppConstant.appHeight))
+    let tableView = UITableView(frame: CGRectMake(0, 100, AppConstant.appWidth, AppConstant.appHeight-164))
     var searchActive: Bool = false
     let searchController = UISearchController()
+    var currentState = state.USER
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,33 +38,33 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchDispl
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-
-        bindModel("User",completionHandler: {})
+    
+        bindModel(currentState,completionHandler: {})
     }
     
 
-    func bindModel(type: String, completionHandler:()->Void){
-        if(type=="User"){
+    func bindModel(type: state, completionHandler:()->Void){
+        if(type==state.USER){
             model.refreshAllUsername()
             model.usernameObserve.observe { (feeds) -> Void in
                 self.currentArray = feeds
                 self.tableView.reloadData()
                 completionHandler()
             }
-        } else if (type=="Tag"){
+        } else if (type==state.TAG){
             model.refreshAllTag()
             model.tagsObserve.observe { (feeds) -> Void in
                 self.currentArray = feeds
                 self.tableView.reloadData()
                 completionHandler()
             }
-        } else if (type=="City"){
+        } else if (type==state.CITY){
             model.refreshAllCity()
             model.cityObserve.observe { (feeds) -> Void in
                 self.currentArray = feeds
                 self.tableView.reloadData()
                 completionHandler()
-        }
+            }
         }
     }
 
@@ -104,18 +105,16 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchDispl
     
     func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         if(selectedScope==0){
-            bindModel("User", completionHandler: {
-                    self.tableView.reloadData()
-            })
+            currentState = .USER
         }else if (selectedScope==1){
-            bindModel("Tag", completionHandler: {
-                    self.tableView.reloadData()
-            })
+            currentState = .TAG
         }else if (selectedScope==2){
-            bindModel("City", completionHandler: {
-                    self.tableView.reloadData()
-            })
+            currentState = .CITY
         }
+        
+        bindModel(currentState, completionHandler: {
+            self.tableView.reloadData()
+        })
 
     }
     
@@ -132,15 +131,42 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchDispl
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell")! as UITableViewCell
+        var cell:UITableViewCell? =
+        tableView.dequeueReusableCellWithIdentifier("Cell")
+        if (cell != nil)
+        {
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle,
+                reuseIdentifier: "Cell")
+        }
+
+        
         if(searchActive){
-            cell.textLabel?.text = filterArray[indexPath.row]
+            cell!.textLabel?.text = filterArray[indexPath.row]
         } else {
-            cell.textLabel?.text = currentArray[indexPath.row];
+            cell!.textLabel?.text = currentArray[indexPath.row];
         }
         
-        return cell;
+        return cell!;
         
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var text: String
+        var vc = UIViewController()
+        if(searchActive){
+            text = filterArray[indexPath.row]
+        } else {
+            text = currentArray[indexPath.row];
+        }
+        if (currentState == .USER){
+            vc = UsernameGalleryViewController(tag: text)
+            
+        } else if (currentState == .TAG){
+            vc = TagGalleryViewController(tag: text)
+        } else if (currentState == .CITY){
+            vc = CityGalleryViewController(tag: text)
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 

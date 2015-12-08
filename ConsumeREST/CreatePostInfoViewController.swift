@@ -66,7 +66,7 @@ class CreatePostInfoViewController: UIViewController, UICollectionViewDelegate,U
         doneButton.contentHorizontalAlignment = .Center
         doneButton.contentVerticalAlignment = .Center
         doneButton.bnd_tap.observe {
-            print(self.descriptionTextView.text!)
+
             WebService.sharedInstance.queryForCreateImage(self.image, description: self.descriptionTextView.text, tagArray: self.selectedTag)
         }
         

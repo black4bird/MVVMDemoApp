@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //let mainVc1 = CreatePostInfoViewController(image: UIImage(named: "placeholder-image")!)
         //let mainVc1=TestViewController()
         let mainVc1 = SearchViewController()
+//        let mainVc1 = UsernameGalleryViewController(tag: "admin")
 //        let mainVc1 = RootViewController()
         //let mainVc1 = TestViewController()
         let navVc = UINavigationController(rootViewController: mainVc1)

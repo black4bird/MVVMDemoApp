@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ConsumeREST/WebService.swift"
-            timestampString = "471270163.697661"
+            timestampString = "471276816.410202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
             landmarkName = "uploadImage(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ConsumeREST/WebService.swift"
-            timestampString = "471270163.697661"
+            timestampString = "471276816.410202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "236"
+            endingLineNumber = "236"
             landmarkName = "uploadImage(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -454,11 +454,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ConsumeREST/WebService.swift"
-            timestampString = "471270163.697661"
+            timestampString = "471276816.410202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "WebService"
             landmarkType = "3">
          </BreakpointContent>
@@ -837,11 +837,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ConsumeREST/WebService.swift"
-            timestampString = "471270163.697661"
+            timestampString = "471276816.410202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "260"
-            endingLineNumber = "260"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
             landmarkName = "testUploadArray()"
             landmarkType = "5">
          </BreakpointContent>
@@ -997,12 +997,122 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ConsumeREST/SearchViewController.swift"
-            timestampString = "471270163.697661"
+            timestampString = "471287847.592734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "searchBar(_:selectedScopeButtonIndexDidChange:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ConsumeREST/TagGalleryViewController.swift"
+            timestampString = "471280708.261738"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "TagGalleryViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ConsumeREST/TagGalleryModel.swift"
+            timestampString = "471280413.108597"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "TagGalleryModel"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ConsumeREST.TagGalleryModel.init (ConsumeREST.TagGalleryModel.Type)(name : Swift.String) -&gt; ConsumeREST.TagGalleryModel"
+                  moduleName = "ConsumeREST"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lnkn/Desktop/ConsumeREST/ConsumeREST/TagGalleryModel.swift"
+                  timestampString = "471280413.153802"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "13"
+                  endingLineNumber = "13"
+                  offsetFromSymbolStart = "27">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ConsumeREST.TagGalleryModel.imagesObserve.getter : Bond.Observable&lt;Swift.Array&lt;ConsumeREST.ImageObject&gt;&gt;"
+                  moduleName = "ConsumeREST"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lnkn/Desktop/ConsumeREST/ConsumeREST/TagGalleryModel.swift"
+                  timestampString = "471280413.15436"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ConsumeREST.TagGalleryModel.imagesObserve.setter : Bond.Observable&lt;Swift.Array&lt;ConsumeREST.ImageObject&gt;&gt;"
+                  moduleName = "ConsumeREST"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lnkn/Desktop/ConsumeREST/ConsumeREST/TagGalleryModel.swift"
+                  timestampString = "471280413.154769"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ConsumeREST.TagGalleryModel.imagesObserve.materializeForSet : Bond.Observable&lt;Swift.Array&lt;ConsumeREST.ImageObject&gt;&gt;"
+                  moduleName = "ConsumeREST"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lnkn/Desktop/ConsumeREST/ConsumeREST/TagGalleryModel.swift"
+                  timestampString = "471280413.15517"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ConsumeREST/GalleryViewController.swift"
+            timestampString = "471286705.542451"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "init(tag:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
