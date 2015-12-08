@@ -17,6 +17,7 @@ import CryptoSwift
 
 class WebService:NSObject, CLUploaderDelegate{
     let kBaseUrl = "http://192.168.70.137:3000/api/v1"
+    //let kBaseUrl = "http://107.170.63.224:3000/api/v1"
     //Cloudinary constant
     private let kCloudName = "ddakp60er"
     private let kApiKey = "287623843915194"

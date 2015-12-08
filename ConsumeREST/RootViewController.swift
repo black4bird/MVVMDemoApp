@@ -15,6 +15,7 @@ class RootViewController: UIViewController{
     let paddingY = AppConstant.appHeight/4
     let mainVc1 = HomeViewController(style: .Grouped)
     let mainVc2 = CameraViewController()
+    let mainVc3 = SearchViewController()
     let backgroundView = UIImageView(frame: UIScreen.mainScreen().bounds)
     let galleryCell = HomeCellView(frame: CGRectMake(AppConstant.appWidth/4,AppConstant.appHeight/4,AppConstant.appWidth/2,AppConstant.appHeight/8))
     let cameraCell = HomeCellView(frame: CGRectMake(AppConstant.appWidth/4,AppConstant.appHeight*3/8 + 20 ,AppConstant.appWidth/2,AppConstant.appHeight/8))
@@ -52,6 +53,9 @@ class RootViewController: UIViewController{
         
         let homeGestureRecognizer = UITapGestureRecognizer(target: self, action: "goToHome")
         galleryCell.addGestureRecognizer(homeGestureRecognizer)
+        
+        let searchGestureRecognizer = UITapGestureRecognizer(target: self, action: "goToSearch")
+        searchCell.addGestureRecognizer(searchGestureRecognizer)
 //        let navVc1 = UINavigationController(rootViewController: mainVc1)
 //        let navVc2 = UINavigationController(rootViewController: mainVc2)
 //        let controllers = [navVc1,navVc2]
@@ -73,6 +77,10 @@ class RootViewController: UIViewController{
     
     func goToHome(){
         self.navigationController?.pushViewController(mainVc1, animated: true)
+    }
+    
+    func goToSearch(){
+        self.navigationController?.pushViewController(mainVc3, animated: true)
     }
     
 }
