@@ -17,15 +17,15 @@ import CryptoSwift
 
 class WebService:NSObject, CLUploaderDelegate{
     let kBaseUrl = "http://192.168.70.137:3000/api/v1"
-    //Cloudinary constant 
-    let kCloudName = "ddakp60er"
-    let kApiKey = "287623843915194"
-    let kSecret = "7zETPKxP4m-R7EsVyPi5P_8vvTA"
+    //Cloudinary constant
+    private let kCloudName = "ddakp60er"
+    private let kApiKey = "287623843915194"
+    private let kSecret = "7zETPKxP4m-R7EsVyPi5P_8vvTA"
     
     static let sharedInstance = WebService()
     private override init(){}
 
-        //MARK:Query for images
+    //MARK:Query for images
     func loadHome() -> Promise<[ImageObject]>{
         return Promise {
             fulfill, reject in
@@ -45,15 +45,29 @@ class WebService:NSObject, CLUploaderDelegate{
         }
     }
     
-    func queryForCreateImage(imageUrl: String, timestamp: String){
+    func queryForCreateImage(image: UIImage, description: String, tagArray: NSMutableArray){
         let url = kBaseUrl + "/image"
-        Alamofire.request(.POST, url, parameters: ["url" : imageUrl,
-            "userid" : AppData.sharedInstance.getUserId(),
-            "timestamp" : timestamp,
-            "lat": AppData.sharedInstance.getUserLat(),
-            "lon": AppData.sharedInstance.getUserLon(),
-            "city": AppData.sharedInstance.getUserCity()]
-        )
+        let publicId = Utility.sharedInstance.uniqueId().sha1()
+        let cloudinary_url = "cloudinary://\(kApiKey):\(kSecret)@\(kCloudName)"
+        let cloudinary = CLCloudinary(url: cloudinary_url)
+        let imageData = UIImagePNGRepresentation(image)! as NSData
+        let uploader = CLUploader(cloudinary, delegate: self)
+        uploader.upload(imageData, options: ["public_id" : publicId, "sync": false], withCompletion: { (success, error, code, context) -> Void in
+            let imageUrl = success["url"]
+            let timestamp = success["created_at"]
+            Alamofire.request(.POST, url, parameters: ["url" : imageUrl!,
+                "userid" : AppData.sharedInstance.getUserId(),
+                "timestamp" : timestamp!,
+                "lat": AppData.sharedInstance.getUserLat(),
+                "lon": AppData.sharedInstance.getUserLon(),
+                "city": AppData.sharedInstance.getUserCity(),
+                "descriptionText":description,
+                "tagarray":tagArray]
+            )
+
+            }, andProgress: nil)
+        
+
     }
     
     //MARK: Query for users
@@ -107,7 +121,7 @@ class WebService:NSObject, CLUploaderDelegate{
     func queryForAllTag()->Promise<[TagObject]>{
         return Promise{
             fulfill, reject in
-            let url = kBaseUrl + "/tag"
+            let url = kBaseUrl + "/search/tag"
             Alamofire.request(.GET, url).responseJSON{
                 response in
                 if (response.result.error == nil){
@@ -128,6 +142,66 @@ class WebService:NSObject, CLUploaderDelegate{
     
     }
     
+    //MARK: Query for all city
+    func queryForAllCity()->Promise<[String]>{
+        return Promise{
+            fulfill, reject in
+            let url = kBaseUrl + "/search/city"
+            Alamofire.request(.GET, url).responseJSON{
+                response in
+                if (response.result.error == nil){
+                    var cities :[String] = []
+                    for el in response.result.value as! [AnyObject]{
+                        cities.append(el["city"] as! String)
+                    }
+                    fulfill(cities)
+                }
+                else{
+                    reject(response.result.error!)
+                }
+            }
+        }
+    }
+    
+    func queryForAllUsername()->Promise<[String]>{
+        return Promise{
+            fulfill, reject in
+            let url = kBaseUrl + "/search/user"
+            Alamofire.request(.GET, url).responseJSON{
+                response in
+                if (response.result.error == nil){
+                    var users :[String] = []
+                    for el in response.result.value as! [AnyObject]{
+                        users.append(el["username"] as! String)
+                    }
+                    fulfill(users)
+                }
+                else{
+                    reject(response.result.error!)
+                }
+            }
+        }
+    }
+    
+    func queryForAllTagname()->Promise<[String]>{
+        return Promise{
+            fulfill, reject in
+            let url = kBaseUrl + "/search/tag"
+            Alamofire.request(.GET, url).responseJSON{
+                response in
+                if (response.result.error == nil){
+                    var tagnames :[String] = []
+                    for el in response.result.value as! [AnyObject]{
+                        tagnames.append(el["name"] as! String)
+                    }
+                    fulfill(tagnames)
+                }
+                else{
+                    reject(response.result.error!)
+                }
+            }
+        }
+    }
     
     //MARK: Upload image
     func uploadImage(image: UIImage){
@@ -164,30 +238,94 @@ class WebService:NSObject, CLUploaderDelegate{
         task.resume()
     }
     
-    func cloudinaryUploadImage(image: UIImage){
-        let publicId = Utility.sharedInstance.uniqueId().sha1()
-        let cloudinary_url = "cloudinary://\(kApiKey):\(kSecret)@\(kCloudName)"
-        let cloudinary = CLCloudinary(url: cloudinary_url)
-        let imageData = UIImagePNGRepresentation(image)! as NSData
-        let uploader = CLUploader(cloudinary, delegate: self)
-        uploader.upload(imageData, options: ["public_id" : publicId, "sync": false])
+//    func cloudinaryUploadImage(image: UIImage){
+//        let publicId = Utility.sharedInstance.uniqueId().sha1()
+//        let cloudinary_url = "cloudinary://\(kApiKey):\(kSecret)@\(kCloudName)"
+//        let cloudinary = CLCloudinary(url: cloudinary_url)
+//        let imageData = UIImagePNGRepresentation(image)! as NSData
+//        let uploader = CLUploader(cloudinary, delegate: self)
+//
+//        uploader.upload(imageData, options: ["public_id" : publicId, "sync": false], withCompletion: { (success, error, code, context) -> Void in
+//            print(success)
+//            }, andProgress: nil)
+//
+//    }
+    
+    //MARK: Search
+    func queryImageByTag(tagname: String)->Promise<[ImageObject]>{
+        return Promise{
+            fulfill, reject in
+            let url = kBaseUrl + "/image/search/tag/" + tagname
+            Alamofire.request(.GET, url).responseJSON{
+                response in
+                if (response.result.error == nil){
+                    
+                    if let feeds = Mapper<ImageObject>().mapArray(response.result.value as! [AnyObject]){
+                        fulfill(feeds)
+                    }
+                }
+                else{
+                    reject(response.result.error!)
+                }
+            }
+        }
     }
     
-    //MARK: Cloudinary Delegate 
-    @objc func uploaderProgress(bytesWritten: Int, totalBytesWritten: Int, totalBytesExpectedToWrite: Int, context: AnyObject!) {
-       // print("On going")
-    }
-    
-    @objc func uploaderSuccess(result: [NSObject : AnyObject]!, context: AnyObject!) {
+    func queryImageByUsername(username: String)->Promise<[ImageObject]>{
+        return Promise{
+            fulfill, reject in
+            let url = kBaseUrl + "/image/search/user/" + username
+            Alamofire.request(.GET, url).responseJSON{
+                response in
+                if (response.result.error == nil){
+                    
+                    if let feeds = Mapper<ImageObject>().mapArray(response.result.value as! [AnyObject]){
+                        fulfill(feeds)
+                    }
+                }
+                else{
+                    reject(response.result.error!)
+                }
+            }
+        }
 
-       let url = result["url"] as! String
-        let timestamp = result["created_at"] as! String
-        queryForCreateImage(url, timestamp: timestamp)
-        
     }
     
+    func queryImageByCity(city: String)->Promise<[ImageObject]>{
+        return Promise{
+            fulfill, reject in
+            let url = kBaseUrl + "/image/search/city/" + city
+            Alamofire.request(.GET, url).responseJSON{
+                response in
+                if (response.result.error == nil){
+                    
+                    if let feeds = Mapper<ImageObject>().mapArray(response.result.value as! [AnyObject]){
+                        fulfill(feeds)
+                    }
+                }
+                else{
+                    reject(response.result.error!)
+                }
+            }
+        }
+
+    }
     
-    @objc func uploaderError(result: String!, code: Int, context: AnyObject!) {
-        print(result)
+    //MARK: Testing shit
+    func testUploadArray(){
+        let url = kBaseUrl + "/image"
+        let array : [String] = ["hilarious","fun","sunny","terrible"]
+        let imgid = 15
+        let str = "yooo"
+        Alamofire.request(.POST, url, parameters: ["url" : "hlhl",
+            "userid" : AppData.sharedInstance.getUserId(),
+            "timestamp" : "24-24-212",
+            "lat": AppData.sharedInstance.getUserLat(),
+            "lon": AppData.sharedInstance.getUserLon(),
+            "city": AppData.sharedInstance.getUserCity(),
+            "tagarray":array]
+        )
+
+
     }
 }

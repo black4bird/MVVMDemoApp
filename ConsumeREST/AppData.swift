@@ -18,8 +18,10 @@ class AppData: NSObject,CLLocationManagerDelegate{
     let user_lat = "CURRENT_LAT"
     let user_lon = "CURRENT_LON"
     let user_city = "CURRENT_CITY"
-    let default_lat = 60.1708
-    let default_lon = 24.9375
+//    let default_lat = 60.1708
+//    let default_lon = 24.9375
+    let default_lat = 47.4925
+    let default_lon = 19.0514
     
     private override init(){
         super.init()
@@ -33,7 +35,7 @@ class AppData: NSObject,CLLocationManagerDelegate{
             //Helsinki lat and lon
             def.setObject(default_lat, forKey: user_lat)
             def.setObject(default_lon, forKey: user_lon)
-            def.setObject("Helsinki", forKey: user_city)
+            def.setObject("Budapest", forKey: user_city)
         }
     }
     

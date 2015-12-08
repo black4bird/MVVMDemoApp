@@ -45,6 +45,13 @@ class HomeViewController: UITableViewController {
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+      //  self.tableView.reloadData()
+        
+    }
+    
     func refresh(){
         bindModel { () -> Void in
             self.refreshControl?.endRefreshing()
@@ -54,7 +61,7 @@ class HomeViewController: UITableViewController {
     func bindModel(completionHandler:()->Void){
         model.refreshHome()
         model.feedsObserve.observe { (feeds) -> Void in
-            self.feeds = feeds
+            self.feeds = feeds.reverse()
             self.tableView.reloadData()
             completionHandler()
         }
