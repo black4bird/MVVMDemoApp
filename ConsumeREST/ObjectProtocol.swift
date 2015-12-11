@@ -12,6 +12,8 @@ protocol ImageProtocol{
     func getId() -> String
     func getUrl() -> String
     func getTimeStamp() -> String
+    func getDescription() -> String
+    func getCity() -> String
 //    func getWidth() -> Double
 //    func getHeight() -> Double
 }

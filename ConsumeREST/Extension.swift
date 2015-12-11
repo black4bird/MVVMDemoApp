@@ -11,7 +11,9 @@ import Foundation
 import UIKit
 //MARK: String
 extension String{
-    
+    func timestampToFullDateString(){
+        
+    }
 }
 
 

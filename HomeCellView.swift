@@ -32,7 +32,9 @@ class HomeCellView: UIView{
         labelView.frame = CGRectMake(0,0,self.frame.width-20,self.frame.height)
         
         logoView.layer.cornerRadius = logoView.frame.height/2
-        logoView.backgroundColor = UIColor.redColor()
+        logoView.contentMode = .ScaleAspectFill
+        logoView.clipsToBounds = true
+        logoView.backgroundColor = UIColor.whiteColor()
         
         labelView.font = UIFont.appRegularFont(self.frame.width/8)
         labelView.textAlignment = .Right

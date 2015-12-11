@@ -73,6 +73,9 @@ class ImageObject: Mappable, ImageProtocol{
         return self.timestamp!
     }
     
+    func getDescription() -> String {
+        return self.description!
+    }
 //    func getWidth() -> Double {
 //        return self.width!
 //    }

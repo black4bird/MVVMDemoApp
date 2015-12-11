@@ -13,7 +13,7 @@ class RootViewController: UIViewController{
 
     let paddingX  = AppConstant.appWidth/3
     let paddingY = AppConstant.appHeight/4
-    let mainVc1 = HomeViewController(style: .Grouped)
+    let mainVc1 = HomeViewController()
     let mainVc2 = CameraViewController()
     let mainVc3 = SearchViewController()
     let backgroundView = UIImageView(frame: UIScreen.mainScreen().bounds)
@@ -47,6 +47,10 @@ class RootViewController: UIViewController{
         galleryCell.labelView.text = "Gallery"
         cameraCell.labelView.text = "Camera"
         searchCell.labelView.text = "Search"
+        
+        galleryCell.logoView.image = UIImage(named: "gallery-icon")
+        cameraCell.logoView.image = UIImage(named: "camera-icon")
+        searchCell.logoView.image = UIImage(named: "search-icon")
         
         let cameraGestureRecognizer = UITapGestureRecognizer(target: self, action: "goToCamera")
         cameraCell.addGestureRecognizer(cameraGestureRecognizer)

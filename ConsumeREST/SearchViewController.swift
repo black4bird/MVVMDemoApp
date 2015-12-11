@@ -21,10 +21,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchDispl
     let searchController = UISearchController()
     var currentState = state.USER
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.translucent = false
-    }
+   
+
     override func viewDidLoad() {
         view.addSubview(searchBar)
         view.addSubview(tableView)
@@ -42,7 +40,27 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UISearchDispl
         bindModel(currentState,completionHandler: {})
     }
     
-
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor(), NSFontAttributeName:UIFont.appRegularFont(24)]
+        self.navigationItem.title = "SEARCH"
+        //bindModel()
+        let backImageView = UIImageView(frame: CGRectMake(0,0,25,25))
+        backImageView.image = UIImage(named: "back-icon")
+        backImageView.contentMode = .ScaleAspectFit
+        backImageView.userInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: "dismissView")
+        backImageView.addGestureRecognizer(tapGesture)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backImageView)
+        
+    }
+    
+    func dismissView(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     func bindModel(type: state, completionHandler:()->Void){
         if(type==state.USER){
             model.refreshAllUsername()

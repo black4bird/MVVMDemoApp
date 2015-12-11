@@ -16,8 +16,10 @@ import SwiftyJSON
 import CryptoSwift
 
 class WebService:NSObject, CLUploaderDelegate{
-    let kBaseUrl = "http://192.168.70.137:3000/api/v1"
-    //let kBaseUrl = "http://107.170.63.224:3000/api/v1"
+    //    let kBaseUrl = "http://192.168.78.53:3000/api/v1"
+    let kBaseUrl = "localhost:3000/api/v1"
+   // let kBaseUrl = "http://107.170.63.224:3000/api/v1"
+    
     //Cloudinary constant
     private let kCloudName = "ddakp60er"
     private let kApiKey = "287623843915194"
@@ -54,11 +56,11 @@ class WebService:NSObject, CLUploaderDelegate{
         let imageData = UIImagePNGRepresentation(image)! as NSData
         let uploader = CLUploader(cloudinary, delegate: self)
         uploader.upload(imageData, options: ["public_id" : publicId, "sync": false], withCompletion: { (success, error, code, context) -> Void in
-            let imageUrl = success["url"]
-            let timestamp = success["created_at"]
-            Alamofire.request(.POST, url, parameters: ["url" : imageUrl!,
+            let imageUrl = success["url"] as! String
+            let timestamp = success["created_at"] as! String
+            Alamofire.request(.POST, url, parameters: ["url" : imageUrl,
                 "userid" : AppData.sharedInstance.getUserId(),
-                "timestamp" : timestamp!,
+                "timestamp" : timestamp,
                 "lat": AppData.sharedInstance.getUserLat(),
                 "lon": AppData.sharedInstance.getUserLon(),
                 "city": AppData.sharedInstance.getUserCity(),
@@ -85,7 +87,7 @@ class WebService:NSObject, CLUploaderDelegate{
                 completionHandler(success: status)
             }
             else{
-                print(response.result.error!)
+                print("User login erro: \(response.result.error!)")
             }
         }
     }
@@ -101,7 +103,6 @@ class WebService:NSObject, CLUploaderDelegate{
                    {
     
                         AppData.sharedInstance.setUserId(user[0].getId())
-                        print(user[0].getId())
                         fulfill(user[0])
                     }
                     
@@ -139,15 +140,31 @@ class WebService:NSObject, CLUploaderDelegate{
     }
 
     
-    func queryForImageTag(){
-    
+    func queryForImageTag(id: Int)->Promise<[TagObject]>{
+        return Promise{
+            fulfill, reject in
+            let url = kBaseUrl + "/search/tag/" + String(id)
+            Alamofire.request(.GET, url).responseJSON{
+                response in
+                if (response.result.error == nil){
+                    
+                    if let tags = Mapper<TagObject>().mapArray(response.result.value as! [AnyObject]){
+                        fulfill(tags)
+                    }
+                }
+                else{
+                    reject(response.result.error!)
+                }
+            }
+        }
+
     }
     
-    //MARK: Query for all city
+    //MARK: Query for all
     func queryForAllCity()->Promise<[String]>{
         return Promise{
             fulfill, reject in
-            let url = kBaseUrl + "/search/city"
+            let url = kBaseUrl + "/tag/search"
             Alamofire.request(.GET, url).responseJSON{
                 response in
                 if (response.result.error == nil){
@@ -316,8 +333,7 @@ class WebService:NSObject, CLUploaderDelegate{
     func testUploadArray(){
         let url = kBaseUrl + "/image"
         let array : [String] = ["hilarious","fun","sunny","terrible"]
-        let imgid = 15
-        let str = "yooo"
+        
         Alamofire.request(.POST, url, parameters: ["url" : "hlhl",
             "userid" : AppData.sharedInstance.getUserId(),
             "timestamp" : "24-24-212",

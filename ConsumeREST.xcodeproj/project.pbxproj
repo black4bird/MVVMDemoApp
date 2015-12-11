@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04A3696F1C1B6C1F009E9939 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3696E1C1B6C1F009E9939 /* PostModel.swift */; };
 		04B70A8C1C137BAD006D08AA /* CreatePostInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70A8B1C137BAD006D08AA /* CreatePostInfoViewController.swift */; };
 		04B70A8E1C138017006D08AA /* CreatePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70A8D1C138017006D08AA /* CreatePostModel.swift */; };
 		04B70A901C13812B006D08AA /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70A8F1C13812B006D08AA /* TagCell.swift */; };
@@ -25,7 +26,7 @@
 		04C3AB671C0496F700D6F2D3 /* ConsumeRESTUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB661C0496F700D6F2D3 /* ConsumeRESTUITests.swift */; };
 		04C3AB751C0498FE00D6F2D3 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB741C0498FE00D6F2D3 /* TestViewController.swift */; };
 		04C3AB771C049F8700D6F2D3 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB761C049F8700D6F2D3 /* WebService.swift */; };
-		04C3AB791C08520500D6F2D3 /* AcceleratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB781C08520500D6F2D3 /* AcceleratorViewController.swift */; };
+		04C3AB791C08520500D6F2D3 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB781C08520500D6F2D3 /* PostViewController.swift */; };
 		04C3AB7B1C085FE300D6F2D3 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB7A1C085FE300D6F2D3 /* RootViewController.swift */; };
 		04C3AB7D1C086DA600D6F2D3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB7C1C086DA600D6F2D3 /* CameraViewController.swift */; };
 		04C3AB881C08A66700D6F2D3 /* App-Bridging-Header.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C3AB871C08A66700D6F2D3 /* App-Bridging-Header.m */; };
@@ -40,6 +41,8 @@
 		04C3ABA11C0E21F200D6F2D3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3ABA01C0E21F200D6F2D3 /* LoginViewController.swift */; };
 		04C3ABA31C0F3C5B00D6F2D3 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C3ABA21C0F3C5B00D6F2D3 /* Router.swift */; };
 		04C4BE981C104177006E5464 /* AppData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C4BE971C104177006E5464 /* AppData.swift */; };
+		04EC8EBE1C197D7F002D1D7E /* PostCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC8EBD1C197D7F002D1D7E /* PostCellView.swift */; };
+		04F0FAA41C19483A00B60809 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04F0FAA31C19483A00B60809 /* Launch Screen.storyboard */; };
 		5EC80C9E7740B30EC9CBC497 /* Pods_ConsumeREST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAA4718DF3905052BECD9FE2 /* Pods_ConsumeREST.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04A3696E1C1B6C1F009E9939 /* PostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		04B70A8B1C137BAD006D08AA /* CreatePostInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostInfoViewController.swift; sourceTree = "<group>"; };
 		04B70A8D1C138017006D08AA /* CreatePostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostModel.swift; sourceTree = "<group>"; };
 		04B70A8F1C13812B006D08AA /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
@@ -85,7 +89,7 @@
 		04C3AB681C0496F700D6F2D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04C3AB741C0498FE00D6F2D3 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		04C3AB761C049F8700D6F2D3 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
-		04C3AB781C08520500D6F2D3 /* AcceleratorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceleratorViewController.swift; sourceTree = "<group>"; };
+		04C3AB781C08520500D6F2D3 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		04C3AB7A1C085FE300D6F2D3 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		04C3AB7C1C086DA600D6F2D3 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		04C3AB861C08A66600D6F2D3 /* ConsumeREST-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ConsumeREST-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 		04C3ABA01C0E21F200D6F2D3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		04C3ABA21C0F3C5B00D6F2D3 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		04C4BE971C104177006E5464 /* AppData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppData.swift; sourceTree = "<group>"; };
+		04EC8EBD1C197D7F002D1D7E /* PostCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCellView.swift; sourceTree = "<group>"; };
+		04F0FAA31C19483A00B60809 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		AF843C28840EE4A3FBB9713B /* Pods-ConsumeREST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsumeREST.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConsumeREST/Pods-ConsumeREST.release.xcconfig"; sourceTree = "<group>"; };
 		C4F9001A2C703883B69031FA /* Pods-ConsumeREST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConsumeREST.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConsumeREST/Pods-ConsumeREST.debug.xcconfig"; sourceTree = "<group>"; };
 		FAA4718DF3905052BECD9FE2 /* Pods_ConsumeREST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConsumeREST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +138,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04A3696D1C1B6C07009E9939 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				04C3AB781C08520500D6F2D3 /* PostViewController.swift */,
+				04A3696E1C1B6C1F009E9939 /* PostModel.swift */,
+			);
+			name = Post;
+			sourceTree = "<group>";
+		};
 		04B70A881C1342C9006D08AA /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,7 +177,6 @@
 		04B70A971C15D1CC006D08AA /* font */ = {
 			isa = PBXGroup;
 			children = (
-				04B70AAC1C1740B2006D08AA /* Images.xcassets */,
 				04B70A9C1C15D7FE006D08AA /* century-gothic-regular.ttf */,
 				04B70A981C15D1DA006D08AA /* century-gothic-bold.ttf */,
 				04B70A991C15D1DA006D08AA /* century-gothic-italic.ttf */,
@@ -192,7 +206,7 @@
 		04C3AB3A1C0496F600D6F2D3 = {
 			isa = PBXGroup;
 			children = (
-				04B70A971C15D1CC006D08AA /* font */,
+				04F0FAA21C19480700B60809 /* Resources */,
 				04C3AB451C0496F700D6F2D3 /* ConsumeREST */,
 				04C3AB5A1C0496F700D6F2D3 /* ConsumeRESTTests */,
 				04C3AB651C0496F700D6F2D3 /* ConsumeRESTUITests */,
@@ -251,6 +265,7 @@
 		04C3AB911C08BEB600D6F2D3 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				04A3696D1C1B6C07009E9939 /* Post */,
 				04B70AA51C170E6A006D08AA /* Gallery */,
 				04B70AA01C161788006D08AA /* Search */,
 				04B70A8A1C1343E7006D08AA /* Login */,
@@ -279,7 +294,6 @@
 		04C3AB961C0A372900D6F2D3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				04C3AB781C08520500D6F2D3 /* AcceleratorViewController.swift */,
 				04C3AB741C0498FE00D6F2D3 /* TestViewController.swift */,
 				04C3AB8D1C08B08600D6F2D3 /* Utility.swift */,
 				04C3AB941C0A372300D6F2D3 /* AppConstant.swift */,
@@ -305,6 +319,7 @@
 				04B70A9E1C15DADE006D08AA /* HomeCellView.swift */,
 				04C3AB991C0A3B8000D6F2D3 /* HomeTableViewCell.swift */,
 				04B70A8F1C13812B006D08AA /* TagCell.swift */,
+				04EC8EBD1C197D7F002D1D7E /* PostCellView.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -322,6 +337,16 @@
 			children = (
 			);
 			name = Wireframe;
+			sourceTree = "<group>";
+		};
+		04F0FAA21C19480700B60809 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				04B70AAC1C1740B2006D08AA /* Images.xcassets */,
+				04B70A971C15D1CC006D08AA /* font */,
+				04F0FAA31C19483A00B60809 /* Launch Screen.storyboard */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		8483B776662E40691EE14611 /* Frameworks */ = {
@@ -412,6 +437,12 @@
 				TargetAttributes = {
 					04C3AB421C0496F600D6F2D3 = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 9PNNZDNAXH;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					04C3AB561C0496F700D6F2D3 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -451,6 +482,7 @@
 				04B70A9D1C15D818006D08AA /* century-gothic-regular.ttf in Resources */,
 				04B70AAD1C1740B2006D08AA /* Images.xcassets in Resources */,
 				04B70A9A1C15D339006D08AA /* century-gothic-bold.ttf in Resources */,
+				04F0FAA41C19483A00B60809 /* Launch Screen.storyboard in Resources */,
 				04B70A9B1C15D339006D08AA /* century-gothic-italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -536,11 +568,13 @@
 				04C3AB9D1C0CE58400D6F2D3 /* ObjectProtocol.swift in Sources */,
 				04B70AA71C170E85006D08AA /* GalleryViewController.swift in Sources */,
 				04C3AB7B1C085FE300D6F2D3 /* RootViewController.swift in Sources */,
+				04A3696F1C1B6C1F009E9939 /* PostModel.swift in Sources */,
 				04C3AB951C0A372300D6F2D3 /* AppConstant.swift in Sources */,
 				04C3AB881C08A66700D6F2D3 /* App-Bridging-Header.m in Sources */,
+				04EC8EBE1C197D7F002D1D7E /* PostCellView.swift in Sources */,
 				04C3AB771C049F8700D6F2D3 /* WebService.swift in Sources */,
 				04C3AB8A1C08A6CB00D6F2D3 /* HomeModel.swift in Sources */,
-				04C3AB791C08520500D6F2D3 /* AcceleratorViewController.swift in Sources */,
+				04C3AB791C08520500D6F2D3 /* PostViewController.swift in Sources */,
 				04B70AA21C1617BD006D08AA /* SearchViewController.swift in Sources */,
 				04C3AB901C08BEB100D6F2D3 /* HomeViewController.swift in Sources */,
 				04B70A901C13812B006D08AA /* TagCell.swift in Sources */,
@@ -674,13 +708,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ConsumeREST/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.ConsumeREST;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.lnkn.PhotoSharing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ConsumeREST/ConsumeREST-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -695,13 +731,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ConsumeREST/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.ConsumeREST;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.lnkn.PhotoSharing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ConsumeREST/ConsumeREST-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 import Bond
-class CreatePostInfoViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource{
+
+class CreatePostInfoViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UITextViewDelegate{
     
     let identifier = "tagCell"
     let model = CreatePostModel()
@@ -39,6 +40,18 @@ class CreatePostInfoViewController: UIViewController, UICollectionViewDelegate,U
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.translucent = false
+        let backImageView = UIImageView(frame: CGRectMake(0,0,25,25))
+        backImageView.image = UIImage(named: "back-icon")
+        backImageView.contentMode = .ScaleAspectFit
+        backImageView.userInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: "goBack")
+        backImageView.addGestureRecognizer(tapGesture)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backImageView)
+
+    }
+    
+    func goBack(){
+        
     }
     override func viewDidLoad() {
         view.addSubview(imageView)
@@ -50,24 +63,32 @@ class CreatePostInfoViewController: UIViewController, UICollectionViewDelegate,U
         imageView.frame=CGRectMake(0, 0, AppConstant.appWidth, AppConstant.appWidth*3/4)
         imageView.image = postImage
         posY = imageView.frame.height
-        
-        descriptionTextView.frame = CGRectMake(0, posY, AppConstant.appWidth, 200)
-        descriptionTextView.backgroundColor = UIColor.redColor()
+        let heightOfRest = AppConstant.appHeight - posY - 64;
+        descriptionTextView.frame = CGRectMake(0, posY, AppConstant.appWidth, heightOfRest/3)
+        descriptionTextView.font = UIFont.appRegularFont(16)
+        descriptionTextView.text = "Write your description"
+        descriptionTextView.textColor = UIColor.lightGrayColor()
+        descriptionTextView.delegate = self
         posY += descriptionTextView.frame.height
         
-        tagCollectionView.frame = CGRectMake(0, posY, AppConstant.appWidth, 120)
-        tagCollectionView.backgroundColor = UIColor.yellowColor()
+        tagCollectionView.frame = CGRectMake(0, posY, AppConstant.appWidth, heightOfRest/3)
+        tagCollectionView.backgroundColor = UIColor.lightGrayColor()
         tagCollectionView.contentInset = UIEdgeInsetsMake(0, 5, 0, 5)
         posY += tagCollectionView.frame.height
         
-        doneButton.frame = CGRectMake(0,posY,AppConstant.appWidth,50)
+        doneButton.frame = CGRectMake(0,posY,AppConstant.appWidth,heightOfRest/3)
         doneButton.backgroundColor = UIColor.greenColor()
         doneButton.setTitle("DONE", forState: .Normal)
         doneButton.contentHorizontalAlignment = .Center
         doneButton.contentVerticalAlignment = .Center
+        //doneButton.titleLabel?.textAlignment = .Center
+        doneButton.titleLabel!.font = UIFont.appRegularFont(25)
         doneButton.bnd_tap.observe {
 
             WebService.sharedInstance.queryForCreateImage(self.image, description: self.descriptionTextView.text, tagArray: self.selectedTag)
+            let vc = HomeViewController()
+            self.navigationController?.pushViewController(vc, animated:false)
+            
         }
         
         
@@ -95,6 +116,20 @@ class CreatePostInfoViewController: UIViewController, UICollectionViewDelegate,U
         view.endEditing(true)
     }
     
+    //MARK: Text view delegate
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.textColor == UIColor.lightGrayColor() {
+            textView.text = nil
+            textView.textColor = UIColor.blackColor()
+        }
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        
+        return textView.text.characters.count + (text.characters.count - range.length) <= 100;
+    }
+    
     //MARK: COllection view delegate and data source
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -110,14 +145,16 @@ class CreatePostInfoViewController: UIViewController, UICollectionViewDelegate,U
         let text = (tagArray.objectAtIndex(indexPath.row) as! TagObject).getName()
         let label = UILabel(frame: CGRectMake(0,0,cell.frame.width,cell.frame.height))
         label.textAlignment = .Center
-        label.textColor = UIColor.redColor()
+        label.textColor = UIColor.blackColor()
         label.text = text
-        label.font = UIFont(name: "AmericanTypewriter-Bold", size: 12)
+        label.font = UIFont.appRegularFont(12)
         label.backgroundColor = UIColor.clearColor()
         cell.backgroundView = UIView()
         cell.backgroundView?.addSubview(label)
-        cell.backgroundColor = !cell.selected ? UIColor.orangeColor() : UIColor.purpleColor()
-        
+        cell.backgroundColor = !cell.selected ? UIColor.whiteColor() : UIColor.grayColor()
+        cell.layer.cornerRadius = 5
+        cell.layer.borderWidth = 1.5
+        cell.layer.borderColor = UIColor.blackColor().CGColor
         return cell
     }
     
@@ -125,13 +162,13 @@ class CreatePostInfoViewController: UIViewController, UICollectionViewDelegate,U
         let cell = tagCollectionView.cellForItemAtIndexPath(indexPath)
         let text = (tagArray.objectAtIndex(indexPath.row) as! TagObject).getName()
         selectedTag.addObject(text)
-        cell?.backgroundColor = UIColor.purpleColor()
+        cell?.backgroundColor = UIColor.grayColor()
     }
     
     func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = tagCollectionView.cellForItemAtIndexPath(indexPath)
         let text = (tagArray.objectAtIndex(indexPath.row) as! TagObject).getName()
         selectedTag.removeObject(text)
-        cell?.backgroundColor = UIColor.orangeColor()
+        cell?.backgroundColor = UIColor.whiteColor()
     }
 }

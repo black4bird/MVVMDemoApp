@@ -29,7 +29,10 @@ class LoginViewController: UIViewController {
         middleSpace.addSubview(loginButton)
         middleSpace.addSubview(usernameTextField)
         middleSpace.addSubview(passwordTextField)
-        
+        let tapGesture = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tapGesture)
+        view.userInteractionEnabled = true
+
         constraintForSubviews()
         configureSubviews()
     }
@@ -60,10 +63,10 @@ class LoginViewController: UIViewController {
         constrain(appLabel,middleSpace){
             view1, view2 in
             
-            view1.left == (view1.superview?.left)! + 60
-            view1.right == (view1.superview?.right)! - 60
-            view1.top == (view1.superview?.top)! + AppConstant.appHeight*5/16
-            view1.height == 150
+            view1.left == (view1.superview?.left)! + 40
+            view1.right == (view1.superview?.right)! - 40
+            view1.top == (view1.superview?.top)! + 20
+            view1.height == 75
             
             view2.left == view1.left
             view2.right == view1.right
@@ -91,7 +94,9 @@ class LoginViewController: UIViewController {
         
         }
     }
-    
+    func dismissKeyboard(){
+        view.endEditing(true)
+    }
     func configureSubviews(){
         backgroundImageView.image = UIImage(named: "background_normal")
         backgroundImageView.contentMode = .ScaleToFill
@@ -99,8 +104,8 @@ class LoginViewController: UIViewController {
         appLabel.textAlignment = .Center
         
      
-        let attStr1 = NSMutableAttributedString(string: "Photo", attributes: [NSFontAttributeName:UIFont.appRegularFontBold(48.0)])
-        let attStr2 = NSMutableAttributedString(string: "Sharing", attributes: [NSFontAttributeName:UIFont.appRegularFontItalic(48.0)])
+        let attStr1 = NSMutableAttributedString(string: "Photo", attributes: [NSFontAttributeName:UIFont.appRegularFontBold(24.0)])
+        let attStr2 = NSMutableAttributedString(string: "Sharing", attributes: [NSFontAttributeName:UIFont.appRegularFontItalic(24.0)])
         attStr1.appendAttributedString(attStr2)
         appLabel.attributedText = attStr1
         
@@ -115,6 +120,7 @@ class LoginViewController: UIViewController {
                     
                     let rootViewVc = RootViewController()
                     self.navigationController!.pushViewController(rootViewVc, animated: true)
+
                 }
                 else{
                     let alertVC = UIAlertController(

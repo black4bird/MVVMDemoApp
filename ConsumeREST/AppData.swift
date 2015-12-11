@@ -14,6 +14,7 @@ class AppData: NSObject,CLLocationManagerDelegate{
     let def = NSUserDefaults()
     let locationManager = CLLocationManager()
 
+    
     let user_key = "CURRENT_USER"
     let user_lat = "CURRENT_LAT"
     let user_lon = "CURRENT_LON"
@@ -26,10 +27,14 @@ class AppData: NSObject,CLLocationManagerDelegate{
     private override init(){
         super.init()
         locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
         locationManager.distanceFilter = kCLDistanceFilterNone;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         locationManager.startUpdatingLocation()
         if (CLLocationManager.authorizationStatus() != .Denied){
+            if let  curLocation = locationManager.location{
+                print("here come the fucking lat: \(curLocation.coordinate.latitude)")
+            }
         }
         else{
             //Helsinki lat and lon
@@ -60,37 +65,33 @@ class AppData: NSObject,CLLocationManagerDelegate{
         return def.objectForKey(user_city) as! String
     }
     
-    //Delegate 
-    @objc func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        print(locations.first)
-        
+    //MARK: CLLocation Delegate
+
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+
         let lat = Double((locationManager.location?.coordinate.latitude)!)
         let lon = Double((locationManager.location?.coordinate.longitude)!)
         def.setObject(lat, forKey: user_lat)
         def.setObject(lon, forKey: user_lon)
-        print("lat: \(lat) , lon:\(lon)")
-        //            let location = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!,
-        //                longitude: (locationManager.location?.coordinate.longitude)!)
-        //            def.setObject(default_lat, forKey: user_lat)
-        //            def.setObject(default_lon, forKey: user_lon)
-        let location = CLLocation(latitude: default_lat, longitude: default_lon)
-        
+        print("lat \(lat), lon: \(lon)")
+        let location = CLLocation(latitude: lat, longitude: lon)
         CLGeocoder().reverseGeocodeLocation(location) { (placemarks, err) -> Void in
-            if((err) != nil){
-                print(err)
-                self.def.setObject("undefined", forKey: self.user_city)
-            }
-            else{
-                let pm = placemarks![0] as CLPlacemark
-                let city = pm.locality
-                self.def.setObject(city, forKey: self.user_city)
-            }
-            self.locationManager.stopUpdatingLocation()
-        }
+                        if((err) != nil){
+                            print(err)
+                            self.def.setObject("undefined", forKey: self.user_city)
+                        }
+                        else{
+                            let pm = placemarks![0] as CLPlacemark
+                            let city = pm.locality
+                            self.def.setObject(city, forKey: self.user_city)
+                        }
+                        self.locationManager.stopUpdatingLocation()
+                    }
+
+
     }
     
-    @objc func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print(error)
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Location error: \(error)")
     }
 }

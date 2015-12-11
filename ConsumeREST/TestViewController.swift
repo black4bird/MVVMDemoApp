@@ -65,7 +65,7 @@ class TestViewController: UIViewController {
         createButton.setTitle("Create", forState: .Normal)
         createButton.bnd_tap.observe{
             //WebService.sharedInstance.queryForTable()
-            let chosenImage = UIImage(named: "image-sample")
+        
            // WebService.sharedInstance.testUploadArray()
             WebService.sharedInstance.queryForAllUsername()
         }

@@ -29,11 +29,12 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.blackColor()
         
         takePictureButton.frame = CGRectMake(AppConstant.appWidth/2 - 40 , AppConstant.appWidth*3/4 + 80, 120,120)
         takePictureButton.layer.cornerRadius = 60
-        takePictureButton.layer.borderWidth = 5
-        takePictureButton.layer.borderColor = UIColor.blueColor().CGColor
+        takePictureButton.layer.borderWidth = 10
+        takePictureButton.layer.borderColor = UIColor.redColor().CGColor
         takePictureButton.backgroundColor = UIColor.blackColor()
         takePictureButton.bnd_tap.observe {
             if let videoConnection = self.stillImageOutput!.connectionWithMediaType(AVMediaTypeVideo) {
@@ -97,6 +98,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     
     
+    //MARK: Option 2 - Image Picker
     func presentCamera(){
         if (UIImagePickerController.availableCaptureModesForCameraDevice(.Rear) != nil){
             imagePicker.delegate = self
