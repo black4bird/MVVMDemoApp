@@ -20,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.backgroundColor = UIColor.whiteColor()
 
-        
-        let mainVc1 = AppData.sharedInstance.getUserId() != 0 ? LoginViewController() : RootViewController()
+        let mainVc1 = LoginViewController()
         //let mainVc1 = CreatePostInfoViewController(image: UIImage(named: "placeholder-image")!)
         //let mainVc1=TestViewController()
         //let mainVc1 = SearchViewController()

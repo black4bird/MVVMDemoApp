@@ -15,6 +15,8 @@ import SDWebImage
 
 class PostViewController : UIViewController {
     let imageView = UIImageView()
+    var tagList : [TagObject] = []
+    var model : PostModel?
     let descriptionCell = PostCellView()
     let timestampCell = PostCellView()
     let tagCell = PostCellView()
@@ -23,7 +25,10 @@ class PostViewController : UIViewController {
 
     init(imageEntity: ImageObject){
         super.init(nibName: nil, bundle: nil)
+        
         entity = imageEntity
+       
+        model = PostModel(id: entity!.getId())
     }
 
     
@@ -61,5 +66,21 @@ class PostViewController : UIViewController {
         locationCell.frame = CGRectMake(0,posY,AppConstant.appWidth,50)
         locationCell.imageView.image = UIImage(named: "location-icon")
         locationCell.setText(entity!.getCity())
+        bindModel { () -> Void in
+            var str = ""
+            for tag in self.tagList {
+                print(tag.getName())
+                str += "#" + tag.getName() + " "
+            }
+            self.tagCell.setText(str)
+        }
+    }
+    
+    func bindModel(completionHandler:()->Void){
+        model?.refreshTagList()
+        model?.tagsObserve.observe({ (feeds) -> Void in
+            self.tagList = feeds
+            completionHandler()
+        })
     }
 }

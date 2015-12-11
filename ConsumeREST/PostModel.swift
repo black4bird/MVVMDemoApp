@@ -9,10 +9,16 @@
 import Foundation
 import Bond
 class PostModel{
-    var imageId : Int
-    init(id: Int){
+    var tagsObserve : Observable<[TagObject]> = Observable([])
+    var imageId : String
+    init(id: String){
         imageId = id
     }
-    var tagsObserve : Observable<[String]> = Observable([])
+
+    func refreshTagList()  {
+        WebService.sharedInstance.queryForImageTag(imageId).then { (response)  in
+            self.tagsObserve.next(response)
+        }
+    }
     
 }

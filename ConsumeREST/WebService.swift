@@ -17,7 +17,7 @@ import CryptoSwift
 
 class WebService:NSObject, CLUploaderDelegate{
     //    let kBaseUrl = "http://192.168.78.53:3000/api/v1"
-    let kBaseUrl = "localhost:3000/api/v1"
+    let kBaseUrl = "http://localhost:3000/api/v1"
    // let kBaseUrl = "http://107.170.63.224:3000/api/v1"
     
     //Cloudinary constant
@@ -38,6 +38,7 @@ class WebService:NSObject, CLUploaderDelegate{
                 if (response.result.error == nil){
 
                     if let feeds = Mapper<ImageObject>().mapArray(response.result.value as! [AnyObject]){
+                        print(feeds[0].getId())
                         fulfill(feeds)
                     }
                 }
@@ -140,10 +141,10 @@ class WebService:NSObject, CLUploaderDelegate{
     }
 
     
-    func queryForImageTag(id: Int)->Promise<[TagObject]>{
+    func queryForImageTag(id: String)->Promise<[TagObject]>{
         return Promise{
             fulfill, reject in
-            let url = kBaseUrl + "/search/tag/" + String(id)
+            let url = kBaseUrl + "/tag/search/" + id
             Alamofire.request(.GET, url).responseJSON{
                 response in
                 if (response.result.error == nil){

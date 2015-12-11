@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 class ImageObject: Mappable, ImageProtocol{
-    private var id: String?
+    private var id: Int?
     private var userId : String?
     private var url : String?
     private var timestamp : String?
@@ -59,7 +59,7 @@ class ImageObject: Mappable, ImageProtocol{
     
     
     func getId() -> String {
-        return self.id!
+        return String(self.id!)
     }
     
     func getUserId() -> String{
