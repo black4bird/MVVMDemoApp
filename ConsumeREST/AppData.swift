@@ -44,13 +44,13 @@ class AppData: NSObject,CLLocationManagerDelegate{
         }
     }
     
-    func setUserId(id: Int){
+    func setUserId(id: String){
         def.setObject(id, forKey: user_key)
     }
     
-    func getUserId()->Int{
+    func getUserId()->String{
     
-        return def.objectForKey(user_key) as! Int
+        return def.objectForKey(user_key) as! String
     }
     
     func getUserLat()->Double{
@@ -73,7 +73,6 @@ class AppData: NSObject,CLLocationManagerDelegate{
         let lon = Double((locationManager.location?.coordinate.longitude)!)
         def.setObject(lat, forKey: user_lat)
         def.setObject(lon, forKey: user_lon)
-        print("lat \(lat), lon: \(lon)")
         let location = CLLocation(latitude: lat, longitude: lon)
         CLGeocoder().reverseGeocodeLocation(location) { (placemarks, err) -> Void in
                         if((err) != nil){

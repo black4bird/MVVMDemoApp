@@ -19,7 +19,7 @@ protocol ImageProtocol{
 }
 
 protocol UserProtocol{
-    func getId() -> Int
+    func getId() -> String
     func getUsername() -> String
     func getEmail() -> String
 

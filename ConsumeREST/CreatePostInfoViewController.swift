@@ -20,6 +20,7 @@ class CreatePostInfoViewController: UIViewController, UICollectionViewDelegate,U
     let imageView = UIImageView()
     let descriptionTextView = UITextView()
     var tagCollectionView : UICollectionView
+    let tagViewLabel = UILabel()
     let doneButton = UIButton()
     var image = UIImage()
     init(image: UIImage){
@@ -51,41 +52,50 @@ class CreatePostInfoViewController: UIViewController, UICollectionViewDelegate,U
     }
     
     func goBack(){
-        
+        self.navigationController?.popViewControllerAnimated(true)
     }
     override func viewDidLoad() {
         view.addSubview(imageView)
         view.addSubview(descriptionTextView)
+        view.addSubview(tagViewLabel)
         view.addSubview(tagCollectionView)
         view.addSubview(doneButton)
         var posY :CGFloat = 0;
 
         imageView.frame=CGRectMake(0, 0, AppConstant.appWidth, AppConstant.appWidth*3/4)
         imageView.image = postImage
+        imageView.contentMode = .ScaleToFill
         posY = imageView.frame.height
+        
         let heightOfRest = AppConstant.appHeight - posY - 64;
         descriptionTextView.frame = CGRectMake(0, posY, AppConstant.appWidth, heightOfRest/3)
         descriptionTextView.font = UIFont.appRegularFont(16)
         descriptionTextView.text = "Write your description"
-        descriptionTextView.textColor = UIColor.lightGrayColor()
+        descriptionTextView.textColor = UIColor.whiteColor()
+        descriptionTextView.backgroundColor = UIColor.lightGrayColor()
         descriptionTextView.delegate = self
         posY += descriptionTextView.frame.height
+        
+        tagViewLabel.frame = CGRectMake(0,posY,AppConstant.appWidth,heightOfRest/6)
+        tagViewLabel.text = "       Choose your tags"
+        tagViewLabel.font = UIFont.appRegularFont(16)
+        posY += tagViewLabel.frame.height
         
         tagCollectionView.frame = CGRectMake(0, posY, AppConstant.appWidth, heightOfRest/3)
         tagCollectionView.backgroundColor = UIColor.lightGrayColor()
         tagCollectionView.contentInset = UIEdgeInsetsMake(0, 5, 0, 5)
         posY += tagCollectionView.frame.height
         
-        doneButton.frame = CGRectMake(0,posY,AppConstant.appWidth,heightOfRest/3)
-        doneButton.backgroundColor = UIColor.greenColor()
+        doneButton.frame = CGRectMake(0,posY,AppConstant.appWidth,heightOfRest/6)
+        doneButton.backgroundColor = UIColor.appColor()
         doneButton.setTitle("DONE", forState: .Normal)
         doneButton.contentHorizontalAlignment = .Center
         doneButton.contentVerticalAlignment = .Center
         //doneButton.titleLabel?.textAlignment = .Center
         doneButton.titleLabel!.font = UIFont.appRegularFont(25)
         doneButton.bnd_tap.observe {
-
-            WebService.sharedInstance.queryForCreateImage(self.image, description: self.descriptionTextView.text, tagArray: self.selectedTag)
+            let descriptionText = (self.descriptionTextView.textColor == UIColor.whiteColor()) ? "" :self.descriptionTextView.text
+            WebService.sharedInstance.queryForCreateImage(self.image, description: descriptionText, tagArray: self.selectedTag)
             let vc = HomeViewController()
             self.navigationController?.pushViewController(vc, animated:false)
             
@@ -118,7 +128,7 @@ class CreatePostInfoViewController: UIViewController, UICollectionViewDelegate,U
     
     //MARK: Text view delegate
     func textViewDidBeginEditing(textView: UITextView) {
-        if textView.textColor == UIColor.lightGrayColor() {
+        if textView.textColor == UIColor.whiteColor() {
             textView.text = nil
             textView.textColor = UIColor.blackColor()
         }

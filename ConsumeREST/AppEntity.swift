@@ -113,8 +113,8 @@ class UserObject: Mappable, UserProtocol{
         email <- map["email"]
     }
     
-    func getId() -> Int {
-        return self.id!
+    func getId() -> String {
+        return String(self.id!)
     }
     
     func getUsername() -> String {

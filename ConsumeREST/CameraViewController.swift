@@ -16,13 +16,31 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     var stillImageOutput: AVCaptureStillImageOutput?
     var takePictureButton = UIButton()
     let imagePicker : UIImagePickerController! = UIImagePickerController()
-
+    let changeCameraButton = UIButton()
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = false
         self.navigationController?.navigationBar.translucent = false
         //presentCamera()
+        session.sessionPreset = AVCaptureSessionPresetiFrame1280x720
+        let devices = AVCaptureDevice.devices()
+        stillImageOutput = AVCaptureStillImageOutput()
+        stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
+        self.session.addOutput(self.stillImageOutput)
+        for device in devices{
+            if (device.hasMediaType(AVMediaTypeVideo)){
+                if (device.position == AVCaptureDevicePosition.Back){
+                    captureDevice = device as? AVCaptureDevice
+                }
+            }
+        }
+        
+        if captureDevice != nil {
+            beginSession()
+        }
+        
+
         
 
     }
@@ -30,6 +48,8 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blackColor()
+        view.addSubview(takePictureButton)
+        //view.addSubview(changeCameraButton)
         
         takePictureButton.frame = CGRectMake(AppConstant.appWidth/2 - 40 , AppConstant.appWidth*3/4 + 80, 120,120)
         takePictureButton.layer.cornerRadius = 60
@@ -46,7 +66,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                         let cgImageRef = CGImageCreateWithJPEGDataProvider(dataProvider, nil, true, CGColorRenderingIntent.RenderingIntentDefault)
                         let currentCameraInput: AVCaptureInput = self.session.inputs[0] as! AVCaptureInput
                         self.session.removeInput(currentCameraInput)
-                        let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.Right)
+                        let image = UIImage(CGImage: cgImageRef!, scale: 1.0, orientation: UIImageOrientation.Up)
                         let createPostInfoVc = CreatePostInfoViewController(image: image)
                         self.navigationController?.pushViewController(createPostInfoVc, animated: true)
                         
@@ -54,46 +74,52 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
                 })
             }
         }
-        view.addSubview(takePictureButton)
-        session.sessionPreset = AVCaptureSessionPresetiFrame1280x720
-        let devices = AVCaptureDevice.devices()
-        stillImageOutput = AVCaptureStillImageOutput()
-        stillImageOutput?.outputSettings = [AVVideoCodecKey: AVVideoCodecJPEG]
-        for device in devices{
-            if (device.hasMediaType(AVMediaTypeVideo)){
-                if (device.position == AVCaptureDevicePosition.Back){
-                    captureDevice = device as? AVCaptureDevice
+        
+        changeCameraButton.frame = CGRectMake(20,takePictureButton.frame.origin.y,30,30)
+        changeCameraButton.backgroundColor = UIColor.redColor()
+        changeCameraButton.bnd_tap.observe{
+            let devices = AVCaptureDevice.devices()
+            for device in devices{
+                let device = device as! AVCaptureDevice
+                if device.position == AVCaptureDevicePosition.Front {
+                    self.captureDevice = device
+                    break
                 }
             }
         }
-        
-        if captureDevice != nil {
-            beginSession()
-        }
-        
 
+        
         
     }
     
     func beginSession(){
-    
-        do{
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-            session.addInput(input)
-            session.addOutput(stillImageOutput)
-        } catch {
-            print(error)
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)){
+            do{
+                let input = try AVCaptureDeviceInput(device: self.captureDevice)
+                self.session.addInput(input)
+                
+            } catch {
+                print(error)
+            }
+            let cameraPreview = UIView(frame: CGRectMake(0,0,AppConstant.appWidth,AppConstant.appWidth*3/4))
+            let previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
+            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            let bounds = cameraPreview.layer.bounds
+            previewLayer?.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
+            previewLayer.bounds = bounds
+            //cameraPreview.backgroundColor = UIColor.redColor()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                cameraPreview.layer.addSublayer(previewLayer)
+                self.view.addSubview(cameraPreview)
+                self.session.startRunning()
+            })
+            
         }
-        let cameraPreview = UIView(frame: CGRectMake(0,0,AppConstant.appWidth,AppConstant.appWidth*3/4))
-        let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-        let bounds = cameraPreview.layer.bounds
-        previewLayer?.position = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds))
-        previewLayer.bounds = bounds
-        cameraPreview.layer.addSublayer(previewLayer)
-        cameraPreview.backgroundColor = UIColor.redColor()
-        view.addSubview(cameraPreview)
-        session.startRunning()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        session.removeOutput(self.stillImageOutput)
     }
     
     

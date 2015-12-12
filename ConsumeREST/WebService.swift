@@ -17,8 +17,8 @@ import CryptoSwift
 
 class WebService:NSObject, CLUploaderDelegate{
     //    let kBaseUrl = "http://192.168.78.53:3000/api/v1"
-    let kBaseUrl = "http://localhost:3000/api/v1"
-   // let kBaseUrl = "http://107.170.63.224:3000/api/v1"
+    //let kBaseUrl = "http://192.168.0.103:3000/api/v1"
+    let kBaseUrl = "http://107.170.63.224:3000/api/v1"
     
     //Cloudinary constant
     private let kCloudName = "ddakp60er"
@@ -38,7 +38,7 @@ class WebService:NSObject, CLUploaderDelegate{
                 if (response.result.error == nil){
 
                     if let feeds = Mapper<ImageObject>().mapArray(response.result.value as! [AnyObject]){
-                        print(feeds[0].getId())
+
                         fulfill(feeds)
                     }
                 }
@@ -50,7 +50,7 @@ class WebService:NSObject, CLUploaderDelegate{
     }
     
     func queryForCreateImage(image: UIImage, description: String, tagArray: NSMutableArray){
-        let url = kBaseUrl + "/image"
+        let url = kBaseUrl + "/create/image"
         let publicId = Utility.sharedInstance.uniqueId().sha1()
         let cloudinary_url = "cloudinary://\(kApiKey):\(kSecret)@\(kCloudName)"
         let cloudinary = CLCloudinary(url: cloudinary_url)
@@ -75,34 +75,42 @@ class WebService:NSObject, CLUploaderDelegate{
     }
     
     //MARK: Query for users
-    func queryForUserExist(username: String, password: String, completionHandler:(success: Bool)->Void){
+    
+    func queryForCreateUser(username: String, password: String, email: String,completionHandler:()->Void){
+        let url = kBaseUrl + "/create/user"
+        Alamofire.request(.POST, url, parameters:["username": username, "password":password.sha1(),"email":email])
+        completionHandler()
+    }
+    
+    func queryForUserExist(email: String, password: String, completionHandler:(success: Bool)->Void){
         let url = kBaseUrl + "/user/find"
-        Alamofire.request(.POST, url, parameters:["username": username,"password": password.sha1()],encoding: .JSON).responseJSON { (response) -> Void in
+
+        Alamofire.request(.POST, url, parameters:["email": email,"password": password.sha1()],encoding: .JSON).responseJSON { (response) -> Void in
             if (response.result.error == nil){
                 let json = JSON(response.result.value!)
                 let status = json[0]["exists"].boolValue
                 if (status){
-                    self.queryForUser(username, pass: password)
+                    self.queryForUser(email, pass: password)
 
                 }
                 completionHandler(success: status)
             }
             else{
-                print("User login erro: \(response.result.error!)")
+                print("User login error: \(response.result.error!)")
             }
         }
     }
     
-    func queryForUser(username: String, pass: String) -> Promise<UserObject>{
+    func queryForUser(email: String, pass: String) -> Promise<UserObject>{
         return Promise{
             fulfill, reject in
             let url = kBaseUrl + "/login"
-            Alamofire.request(.POST, url, parameters:["username": username,"password": pass.sha1()],encoding: .JSON).responseJSON{
+            Alamofire.request(.POST, url, parameters:["email": email,"password": pass.sha1()],encoding: .JSON).responseJSON{
                 response in
                 if (response.result.error == nil){
                    if let user = Mapper<UserObject>().mapArray(response.result.value as! [AnyObject])
                    {
-    
+
                         AppData.sharedInstance.setUserId(user[0].getId())
                         fulfill(user[0])
                     }

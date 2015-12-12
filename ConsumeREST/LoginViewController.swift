@@ -14,6 +14,7 @@ import CoreLocation
 
 class LoginViewController: UIViewController {
     let loginButton = UIButton()
+    let signupButton = UIButton()
     let usernameTextField = UITextField()
     let passwordTextField = UITextField()
     let backgroundImageView = UIImageView(frame: UIScreen.mainScreen().bounds)
@@ -26,6 +27,8 @@ class LoginViewController: UIViewController {
         view.addSubview(backgroundImageView)
         view.addSubview(appLabel)
         view.addSubview(middleSpace)
+
+        middleSpace.addSubview(signupButton)
         middleSpace.addSubview(loginButton)
         middleSpace.addSubview(usernameTextField)
         middleSpace.addSubview(passwordTextField)
@@ -71,11 +74,11 @@ class LoginViewController: UIViewController {
             view2.left == view1.left
             view2.right == view1.right
             view2.top == view1.bottom
-            view2.height == 250
+            view2.height == 300
         }
         
-        constrain(usernameTextField,passwordTextField,loginButton){
-            view1, view2, view3 in
+        constrain(usernameTextField,passwordTextField,loginButton, signupButton){
+            view1, view2, view3, view4 in
             
             view1.left == (view1.superview?.left)! + 40
             view1.right == (view1.superview?.right)! - 40
@@ -87,10 +90,15 @@ class LoginViewController: UIViewController {
             view2.height == 40
             view2.top == view1.bottom + 15
             
-            view3.top == view2.bottom + 20
+            view3.top == view2.bottom + 40
             view3.left == view1.left + 20
             view3.right == view1.right - 20
             view3.height == 40
+            
+            view4.top == view3.bottom + 20
+            view4.left == view3.left
+            view4.right == view3.right
+            view4.height == 40
         
         }
     }
@@ -112,8 +120,21 @@ class LoginViewController: UIViewController {
         middleSpace.backgroundColor = UIColor.whiteColor()
         middleSpace.alpha = 0.8
         
-        loginButton.backgroundColor = UIColor.grayColor()
+
         loginButton.setTitle("Login", forState: .Normal)
+        
+        signupButton.backgroundColor = UIColor.appColor()
+        signupButton.setTitle("Sign up", forState: .Normal)
+        
+        combineLatest(usernameTextField.bnd_text, passwordTextField.bnd_text).map { (username, password) -> Bool in
+            return username!.validEmail() && password!.validPassword()
+        }.bindTo(loginButton.bnd_userInteractionEnabled)
+        
+        loginButton.bnd_userInteractionEnabled.map { (valid) -> UIColor in
+            return valid ? UIColor.appColor() : UIColor.grayColor()
+        }.bindTo(loginButton.bnd_backgroundColor)
+        
+        
         loginButton.bnd_tap.observe{
             WebService.sharedInstance.queryForUserExist(self.usernameTextField.text!, password: self.passwordTextField.text!, completionHandler: { (success) -> Void in
                 if(success){
@@ -125,7 +146,7 @@ class LoginViewController: UIViewController {
                 else{
                     let alertVC = UIAlertController(
                         title: "Invalid login",
-                        message: "Sorry, wrong username or password",
+                        message: "Sorry, wrong email or password",
                         preferredStyle: .Alert)
                     let okAction = UIAlertAction(
                         title: "OK",
@@ -140,8 +161,13 @@ class LoginViewController: UIViewController {
             })
 
         }
-        usernameTextField.backgroundColor = UIColor.whiteColor()
         
+        signupButton.bnd_tap.observe {
+            let vc = SignupViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        usernameTextField.backgroundColor = UIColor.whiteColor()
+        usernameTextField.keyboardType = .EmailAddress
         usernameTextField.placeholder = "Email"
         
         passwordTextField.backgroundColor = UIColor.whiteColor()

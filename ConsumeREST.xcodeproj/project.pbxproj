@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		04A3696F1C1B6C1F009E9939 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A3696E1C1B6C1F009E9939 /* PostModel.swift */; };
+		04A369711C1C06DB009E9939 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A369701C1C06DB009E9939 /* SignupViewController.swift */; };
 		04B70A8C1C137BAD006D08AA /* CreatePostInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70A8B1C137BAD006D08AA /* CreatePostInfoViewController.swift */; };
 		04B70A8E1C138017006D08AA /* CreatePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70A8D1C138017006D08AA /* CreatePostModel.swift */; };
 		04B70A901C13812B006D08AA /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B70A8F1C13812B006D08AA /* TagCell.swift */; };
@@ -65,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		04A3696E1C1B6C1F009E9939 /* PostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		04A369701C1C06DB009E9939 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		04B70A8B1C137BAD006D08AA /* CreatePostInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostInfoViewController.swift; sourceTree = "<group>"; };
 		04B70A8D1C138017006D08AA /* CreatePostModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostModel.swift; sourceTree = "<group>"; };
 		04B70A8F1C13812B006D08AA /* TagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				04C3ABA01C0E21F200D6F2D3 /* LoginViewController.swift */,
+				04A369701C1C06DB009E9939 /* SignupViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				04C3AB9D1C0CE58400D6F2D3 /* ObjectProtocol.swift in Sources */,
 				04B70AA71C170E85006D08AA /* GalleryViewController.swift in Sources */,
 				04C3AB7B1C085FE300D6F2D3 /* RootViewController.swift in Sources */,
+				04A369711C1C06DB009E9939 /* SignupViewController.swift in Sources */,
 				04A3696F1C1B6C1F009E9939 /* PostModel.swift in Sources */,
 				04C3AB951C0A372300D6F2D3 /* AppConstant.swift in Sources */,
 				04C3AB881C08A66700D6F2D3 /* App-Bridging-Header.m in Sources */,
@@ -717,7 +721,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.lnkn.PhotoSharing;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PhotoSharing;
 				SWIFT_OBJC_BRIDGING_HEADER = "ConsumeREST/ConsumeREST-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -740,7 +744,7 @@
 					"$(PROJECT_DIR)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.lnkn.PhotoSharing;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = PhotoSharing;
 				SWIFT_OBJC_BRIDGING_HEADER = "ConsumeREST/ConsumeREST-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

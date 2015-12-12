@@ -37,6 +37,7 @@ class PostViewController : UIViewController {
     }
     
     override func viewDidLoad() {
+        view.backgroundColor = UIColor.whiteColor()
         view.addSubview(imageView)
         view.addSubview(descriptionCell)
         view.addSubview(timestampCell)
@@ -56,7 +57,7 @@ class PostViewController : UIViewController {
         posY += descriptionCell.frame.height + padding
         timestampCell.frame = CGRectMake(0,posY,AppConstant.appWidth,50)
         timestampCell.imageView.image = UIImage(named: "clock-icon")
-        timestampCell.setText(entity!.getTimeStamp())
+        timestampCell.setText(entity!.getTimeStamp().timestampToFullDateString())
         
         posY += timestampCell.frame.height + padding
         tagCell.frame = CGRectMake(0,posY,AppConstant.appWidth,50)
@@ -69,7 +70,6 @@ class PostViewController : UIViewController {
         bindModel { () -> Void in
             var str = ""
             for tag in self.tagList {
-                print(tag.getName())
                 str += "#" + tag.getName() + " "
             }
             self.tagCell.setText(str)
