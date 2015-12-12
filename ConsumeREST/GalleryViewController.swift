@@ -98,6 +98,12 @@ class TagGalleryViewController: UIViewController,UICollectionViewDelegate,UIColl
 
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let entity = self.feeds.objectAtIndex(indexPath.row) as! ImageObject
+        let postVc = PostViewController(imageEntity: entity)
+        self.navigationController!.pushViewController(postVc, animated: true)
+    }
 }
 
 class CityGalleryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource{
@@ -189,6 +195,12 @@ class CityGalleryViewController: UIViewController,UICollectionViewDelegate,UICol
         
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let entity = self.feeds.objectAtIndex(indexPath.row) as! ImageObject
+        let postVc = PostViewController(imageEntity: entity)
+        self.navigationController!.pushViewController(postVc, animated: true)
+    }
 }
 
 class UsernameGalleryViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource{
@@ -279,5 +291,11 @@ class UsernameGalleryViewController: UIViewController,UICollectionViewDelegate,U
         cell.backgroundView!.addSubview(imageView)
         
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let entity = self.feeds.objectAtIndex(indexPath.row) as! ImageObject
+        let postVc = PostViewController(imageEntity: entity)
+        self.navigationController!.pushViewController(postVc, animated: true)
     }
 }
