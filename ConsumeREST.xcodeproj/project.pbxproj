@@ -80,7 +80,7 @@
 		04B70AA81C1712F9006D08AA /* GalleryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryModel.swift; sourceTree = "<group>"; };
 		04B70AAA1C172ACD006D08AA /* GalleryProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryProtocol.swift; sourceTree = "<group>"; };
 		04B70AAC1C1740B2006D08AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		04C3AB431C0496F600D6F2D3 /* ConsumeREST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConsumeREST.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		04C3AB431C0496F600D6F2D3 /* PhotoSharing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoSharing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04C3AB461C0496F700D6F2D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04C3AB521C0496F700D6F2D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04C3AB571C0496F700D6F2D3 /* ConsumeRESTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConsumeRESTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,7 +222,7 @@
 		04C3AB441C0496F600D6F2D3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				04C3AB431C0496F600D6F2D3 /* ConsumeREST.app */,
+				04C3AB431C0496F600D6F2D3 /* PhotoSharing.app */,
 				04C3AB571C0496F700D6F2D3 /* ConsumeRESTTests.xctest */,
 				04C3AB621C0496F700D6F2D3 /* ConsumeRESTUITests.xctest */,
 			);
@@ -389,7 +389,7 @@
 			);
 			name = ConsumeREST;
 			productName = ConsumeREST;
-			productReference = 04C3AB431C0496F600D6F2D3 /* ConsumeREST.app */;
+			productReference = 04C3AB431C0496F600D6F2D3 /* PhotoSharing.app */;
 			productType = "com.apple.product-type.application";
 		};
 		04C3AB561C0496F700D6F2D3 /* ConsumeRESTTests */ = {
@@ -714,7 +714,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ConsumeREST/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -737,7 +737,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = ConsumeREST/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

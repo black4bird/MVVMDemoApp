@@ -173,7 +173,7 @@ class WebService:NSObject, CLUploaderDelegate{
     func queryForAllCity()->Promise<[String]>{
         return Promise{
             fulfill, reject in
-            let url = kBaseUrl + "/tag/search"
+            let url = kBaseUrl + "/search/city"
             Alamofire.request(.GET, url).responseJSON{
                 response in
                 if (response.result.error == nil){
